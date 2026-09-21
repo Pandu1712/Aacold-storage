@@ -1,10 +1,23 @@
-<!-- LOVABLE:BEGIN -->
-> [!IMPORTANT]
-> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
-> published git history — force pushing, or rebasing/amending/squashing commits
-> that are already pushed — as it rewrites history on Lovable's side and the
-> user will likely lose their project history.
->
-> Commits you push to the connected branch sync back to Lovable and show up in
-> the editor, so keep the branch in a working state.
-<!-- LOVABLE:END -->
+# AA Cold Storages (AACS) Web Application
+
+## Overview
+This repository contains the complete web application for **AA Cold Storages (AACS)** — a modern, responsive corporate catalogue showcasing industrial refrigeration, cold rooms, blast freezers, ripening chambers, PUF insulated panels, HVAC systems, and AMC services based in Bengaluru, Karnataka.
+
+## Stack
+- **Framework**: TanStack Start + React
+- **Router**: TanStack Router
+- **Styling**: Tailwind CSS + Vanilla CSS tokens
+- **Deployment**: Vercel / Cloudflare
+- **Package Manager**: npm / bun
+
+## Running Locally
+```bash
+npm install
+npm run dev
+```
+
+## Production Build
+```bash
+npm run build
+npm run preview
+```

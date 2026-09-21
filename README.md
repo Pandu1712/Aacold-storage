@@ -1,10 +1,8 @@
-# AACS Coldscape
-
-# AACS — AA Cold Storages | Premium Static Website Prompt for Lovable
+# AACS — AA Cold Storages
 
 ## Project Overview
 
-Design and build a **premium static corporate website** for **AACS — AA Cold Storages**.
+A modern, responsive web application and catalogue for **AACS — AA Cold Storages**, showcasing commercial and industrial cold storage solutions, blast freezers, walk-in chillers, ripening chambers, PUF panels, HVAC systems, and turnkey AMC refrigeration support in Bengaluru, Karnataka.
 
 This is **NOT an eCommerce website** and **NOT a dynamic CMS website**.
 
@@ -650,23 +648,17 @@ Primary Text Color
 
 #1A2B3C
 
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/d706a3f0-5419-49e7-8ee2-62bb4a7f40ca).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Local Development
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm install
 npm run dev
 ```
+
+## Production Build & Deployment
+
+```sh
+npm run build
+npm run preview
+```
+
