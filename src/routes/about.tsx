@@ -64,10 +64,10 @@ function AboutPage() {
               <Sparkles className="h-3 w-3 text-[#4FC7FF]" />
               About AACS
             </span>
-            <h1 className="mt-2.5 max-w-3xl font-display text-3xl font-extrabold text-white md:text-4xl lg:text-5xl tracking-tight">
+            <h1 className="mt-2.5 max-w-4xl lg:max-w-5xl font-display text-3xl font-extrabold text-white md:text-4xl lg:text-5xl tracking-tight">
               Pioneering Complete Cooling &amp; Cold Storage Solutions
             </h1>
-            <p className="mt-2 max-w-2xl text-xs sm:text-sm leading-relaxed text-[#D8E7F5]">
+            <p className="mt-2 max-w-3xl lg:max-w-4xl text-xs sm:text-sm leading-relaxed text-[#D8E7F5]">
               A trusted engineering partner specializing in customized thermal enclosures, industrial refrigeration plants, ripening chambers, and proactive AMC maintenance.
             </p>
           </ScrollReveal>
@@ -141,7 +141,7 @@ function AboutPage() {
                   AACS — AA Cold Storages
                 </strong>
                 <p className="mt-0.5 text-[0.7rem] text-[#5C728A]">
-                  Complete Cooling Solutions • Est. 2020 • Bengaluru
+                  Complete Cooling Solutions • Bengaluru, Karnataka
                 </p>
               </div>
             </div>
@@ -155,12 +155,12 @@ function AboutPage() {
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Vision Card */}
             <ScrollReveal direction="left" duration={700}>
-              <div className="rounded-2xl border border-[#D8E7F5] bg-white p-5 md:p-6 shadow-card h-full">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-brand">
+              <div className="interactive-card group rounded-2xl border border-[#D8E7F5] bg-white p-5 md:p-6 shadow-card h-full cursor-pointer">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-brand transition-transform duration-300 group-hover:scale-110 group-active:scale-105">
                   <Eye className="h-5 w-5" />
                 </span>
 
-                <h2 className="mt-3 font-display text-lg sm:text-xl font-bold text-[#002E7D]">
+                <h2 className="mt-3 font-display text-lg sm:text-xl font-bold text-[#002E7D] transition-colors duration-300 group-hover:text-[#0AA8F5]">
                   Our Vision
                 </h2>
 
@@ -176,12 +176,12 @@ function AboutPage() {
 
             {/* Mission Card (Checklist) */}
             <ScrollReveal direction="right" duration={700}>
-              <div className="rounded-2xl border border-[#D8E7F5] bg-white p-5 md:p-6 shadow-card h-full">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#002E7D] to-[#0050A7] text-white shadow-brand">
+              <div className="interactive-card group rounded-2xl border border-[#D8E7F5] bg-white p-5 md:p-6 shadow-card h-full cursor-pointer">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#002E7D] to-[#0050A7] text-white shadow-brand transition-transform duration-300 group-hover:scale-110 group-active:scale-105">
                   <Target className="h-5 w-5" />
                 </span>
 
-                <h2 className="mt-3 font-display text-lg sm:text-xl font-bold text-[#002E7D]">
+                <h2 className="mt-3 font-display text-lg sm:text-xl font-bold text-[#002E7D] transition-colors duration-300 group-hover:text-[#0AA8F5]">
                   Our Mission
                 </h2>
 
@@ -216,13 +216,13 @@ function AboutPage() {
               delay={idx * 60}
               duration={500}
             >
-              <div className="flex flex-col justify-between rounded-2xl border border-[#D8E7F5] bg-white p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-[#0AA8F5] hover:shadow-card-hover h-full">
+              <div className="interactive-card group flex flex-col justify-between rounded-2xl border border-[#D8E7F5] bg-white p-5 shadow-card h-full cursor-pointer">
                 <div>
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F5F9FC] border border-[#D8E7F5] text-xs font-bold text-[#0050A7]">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F5F9FC] border border-[#D8E7F5] text-xs font-bold text-[#0050A7] transition-transform duration-300 group-hover:scale-110">
                     0{idx + 1}
                   </span>
 
-                  <h3 className="mt-3 font-display text-base font-bold text-[#002E7D]">
+                  <h3 className="mt-3 font-display text-base font-bold text-[#002E7D] transition-colors duration-300 group-hover:text-[#0AA8F5]">
                     {reason.title}
                   </h3>
 

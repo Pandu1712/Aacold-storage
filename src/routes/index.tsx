@@ -14,6 +14,7 @@ import {
   MessageCircle,
   ChevronRight,
   Play,
+  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CtaBand, ProductCard, SectionHeading, TrustStrip } from "@/components/sections";
@@ -130,180 +131,149 @@ function HomePage() {
       {/* 2. Company Trust Strip */}
       <TrustStrip />
 
-      {/* 3. MAIN FEATURED PRODUCTS WITH EXACT PRICES ON HOME PAGE */}
-      <section className="site-container py-6 lg:py-8" id="featured-products">
-        <SectionHeading
-          eyebrow="Main Products &amp; Transparent Pricing"
-          title="Engineered Cold Storage &amp; Refrigeration Systems"
-          copy="Select any main product below to view full specifications, applications, and custom dimension options."
-          center
-        />
+      {/* 3. OUR SERVICES */}
+      <section className="site-container py-6 lg:py-8" id="services">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-3 border-b border-[#D8E7F5]">
+          <div>
+            <span className="eyebrow">
+              <Sparkles className="h-3.5 w-3.5 shrink-0" />
+              <span className="whitespace-nowrap">Turnkey Services &amp; AMC</span>
+            </span>
+            <h2 className="mt-2 font-display text-2xl sm:text-3xl font-black text-[#002E7D] tracking-tight leading-tight">
+              Refrigeration Services &amp; <br className="hidden sm:inline" />
+              <span className="text-[#0AA8F5]">AMC Maintenance</span>
+            </h2>
+            <p className="mt-1 max-w-xl text-xs sm:text-sm text-[#5C728A]">
+              From precision panel installation to emergency troubleshooting and comprehensive AMC contracts.
+            </p>
+          </div>
 
-        {/* Featured Product Cards Grid with Direct Links */}
-        <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {products.slice(0, 6).map((product) => (
-            <ProductCard key={product.slug} product={product} />
-          ))}
+          {/* Quick Jump Pill to Products */}
+          <div className="flex items-center gap-2 shrink-0">
+            <a
+              href="#featured-products"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#0AA8F5]/40 bg-[#F0F9FF] px-4 py-2 font-display text-xs font-bold text-[#0050A7] shadow-sm hover:bg-[#0050A7] hover:text-white transition-all duration-300"
+            >
+              <span>📦 View Products Below</span>
+              <ArrowRight className="h-3.5 w-3.5" />
+            </a>
+          </div>
         </div>
 
-        {/* Link to Full Catalogue */}
+        {/* Services Grid (3 Columns) with Dynamic Directional ScrollReveal Transitions */}
+        <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service, idx) => {
+            const directions: ("left" | "up" | "right")[] = ["left", "up", "right"];
+            const dir = directions[idx % 3];
+            return (
+              <ScrollReveal key={service.id} direction={dir} delay={(idx % 3) * 100} duration={650}>
+                <article
+                  className="interactive-card flex flex-col justify-between overflow-hidden rounded-2xl border border-[#D8E7F5] bg-white p-5 shadow-card group active:scale-[0.985] cursor-pointer h-full"
+                >
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-sm transition-transform duration-300 group-hover:scale-110 group-active:scale-105">
+                        <Settings className="h-5 w-5" />
+                      </span>
+                      <span className="rounded-full bg-[#F5F9FC] border border-[#D8E7F5] px-3 py-0.5 text-xs font-bold text-[#0050A7] transition-colors duration-300 group-hover:bg-[#0050A7] group-hover:text-white">
+                        {service.price}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-3.5 font-display text-base sm:text-lg font-bold text-[#002E7D] group-hover:text-[#0AA8F5] transition-colors">
+                      {service.name}
+                    </h3>
+
+                    <p className="mt-1.5 text-xs leading-relaxed text-[#5C728A]">
+                      {service.description}
+                    </p>
+
+                    <ul className="mt-3.5 space-y-1.5 border-t border-[#D8E7F5]/80 pt-3 text-xs text-[#1A2B3C]">
+                      {service.benefits.slice(0, 2).map((b) => (
+                        <li key={b} className="flex items-start gap-2">
+                          <CheckCircle2 className="h-3.5 w-3.5 text-[#0AA8F5] shrink-0 mt-0.5" />
+                          <span className="text-[0.75rem] text-[#334155]">{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="mt-4 pt-1">
+                    <Button
+                      asChild
+                      size="sm"
+                      className="w-full rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] text-xs font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
+                    >
+                      <Link to="/contact">Book Service / Get Quote</Link>
+                    </Button>
+                  </div>
+                </article>
+              </ScrollReveal>
+            );
+          })}
+        </div>
+
         <div className="mt-5 text-center">
-          <Button
-            asChild
-            size="default"
-            className="rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-7 py-2.5 font-display text-xs font-bold text-white shadow-brand hover:opacity-95"
-          >
-            <Link to="/products">
-              Explore All {products.length} Products in Catalogue <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-            </Link>
-          </Button>
-        </div>
-      </section>
-
-      {/* 4. About AACS Preview Section */}
-      <section className="bg-[#F5F9FC] border-y border-[#D8E7F5] py-6 lg:py-8 overflow-hidden">
-        <div className="site-container grid items-center gap-6 lg:grid-cols-2">
-          {/* Left Facility Image (Slide from Left) */}
-          <ScrollReveal direction="left" duration={700} className="relative">
-            <img
-              src={images.installationImage}
-              alt="AACS Cold Storage Engineering & Installation"
-              loading="lazy"
-              width={1600}
-              height={1200}
-              className="aspect-[4/3] w-full rounded-2xl object-cover shadow-xl border border-[#D8E7F5]"
-            />
-            {/* Floating Experience Badge */}
-            <div className="absolute -bottom-4 -right-4 rounded-xl border border-[#D8E7F5] bg-white p-3.5 shadow-lg hidden sm:flex items-center gap-2.5">
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#0050A7] text-white">
-                <ShieldCheck className="h-5 w-5" />
-              </span>
-              <div>
-                <strong className="block font-display text-xs font-bold text-[#002E7D]">
-                  Turnkey Cold Chain
-                </strong>
-                <span className="text-[0.68rem] text-[#5C728A]">Supply • Install • AMC</span>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* Right Content (Slide from Right) */}
-          <ScrollReveal direction="right" duration={700}>
-            <SectionHeading
-              eyebrow="About AACS"
-              title="Design. Supply. Installation. Maintenance."
-            />
-
-            <p className="section-copy mt-3 text-xs sm:text-sm">
-              AACS provides comprehensive cold storage and refrigeration
-              solutions for commercial and industrial applications.
-            </p>
-
-            <p className="section-copy mt-2 text-xs sm:text-sm">
-              We specialize in design, supply, installation, servicing and
-              maintenance of temperature-controlled storage systems tailored to
-              customer requirements.
-            </p>
-
-            <div className="mt-4 grid gap-2 sm:grid-cols-2">
-              <div className="flex items-center gap-2.5 rounded-lg bg-white p-2.5 border border-[#D8E7F5]">
-                <CheckCircle2 className="h-4 w-4 text-[#0AA8F5] shrink-0" />
-                <span className="text-xs font-semibold text-[#002E7D]">Custom Sizing & Specs</span>
-              </div>
-              <div className="flex items-center gap-2.5 rounded-lg bg-white p-2.5 border border-[#D8E7F5]">
-                <CheckCircle2 className="h-4 w-4 text-[#0AA8F5] shrink-0" />
-                <span className="text-xs font-semibold text-[#002E7D]">Energy Efficient Compressors</span>
-              </div>
-              <div className="flex items-center gap-2.5 rounded-lg bg-white p-2.5 border border-[#D8E7F5]">
-                <CheckCircle2 className="h-4 w-4 text-[#0AA8F5] shrink-0" />
-                <span className="text-xs font-semibold text-[#002E7D]">Airtight PUF Cam-Lock</span>
-              </div>
-              <div className="flex items-center gap-2.5 rounded-lg bg-white p-2.5 border border-[#D8E7F5]">
-                <CheckCircle2 className="h-4 w-4 text-[#0AA8F5] shrink-0" />
-                <span className="text-xs font-semibold text-[#002E7D]">Proactive AMC Contracts</span>
-              </div>
-            </div>
-
+          <ScrollReveal direction="up" delay={150}>
             <Button
               asChild
               size="default"
-              className="mt-4 rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-6 py-2.5 font-display text-xs font-semibold text-white shadow-brand hover:opacity-95"
+              variant="outline"
+              className="rounded-xl border-[#D8E7F5] px-6 py-2.5 font-display text-xs font-semibold text-[#002E7D] hover:border-[#0AA8F5] hover:bg-[#F5F9FC] active:scale-95 transition-all duration-200"
             >
-              <Link to="/about">
-                Learn More <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+              <Link to="/services">
+                View All Services &amp; Pricing <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Link>
             </Button>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* 5. Our Services Preview */}
-      <section className="site-container py-6 lg:py-8">
-        <SectionHeading
-          eyebrow="Our Services"
-          title="Professional Lifecycle Support & Maintenance"
-          copy="From precision panel installation to emergency troubleshooting and AMC, AACS ensures zero downtime."
-          center
-        />
+      {/* 4. SIMULTANEOUS FEATURED PRODUCTS WITH EXACT PRICES */}
+      <section className="bg-[#F5F9FC] border-y border-[#D8E7F5] py-6 lg:py-8" id="featured-products">
+        <div className="site-container">
+          <SectionHeading
+            eyebrow="Engineered Products & Pricing"
+            title={
+              <>
+                Cold Storage Rooms, <br className="hidden sm:inline" />
+                <span className="text-[#0AA8F5]">Chillers &amp; Panels</span>
+              </>
+            }
+            copy="Select any product to view exact starting prices, technical specifications, and custom configuration options."
+            center
+          />
 
-        <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => (
-            <article
-              key={service.id}
-              className="flex flex-col justify-between overflow-hidden rounded-2xl border border-[#D8E7F5] bg-white p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-[#0AA8F5] hover:shadow-card-hover"
-            >
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-sm">
-                    <Settings className="h-5 w-5" />
-                  </span>
-                  <span className="rounded-full bg-[#F5F9FC] border border-[#D8E7F5] px-3 py-0.5 text-xs font-bold text-[#0050A7]">
-                    {service.price}
-                  </span>
-                </div>
+          {/* Featured Product Cards Grid with Alternating Left / Up / Right Animations */}
+          <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {products.slice(0, 6).map((product, idx) => {
+              const directions: ("left" | "up" | "right")[] = ["left", "up", "right"];
+              const dir = directions[idx % 3];
+              return (
+                <ProductCard
+                  key={product.slug}
+                  product={product}
+                  direction={dir}
+                  delay={(idx % 3) * 80}
+                />
+              );
+            })}
+          </div>
 
-                <h3 className="mt-3 font-display text-base sm:text-lg font-bold text-[#002E7D]">
-                  {service.name}
-                </h3>
-
-                <p className="mt-1.5 text-xs leading-relaxed text-[#5C728A]">
-                  {service.description}
-                </p>
-
-                <ul className="mt-3 space-y-1.5 border-t border-[#D8E7F5] pt-3 text-xs text-[#1A2B3C]">
-                  {service.benefits.slice(0, 2).map((b) => (
-                    <li key={b} className="flex items-start gap-2">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-[#0AA8F5] shrink-0 mt-0.5" />
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mt-4 pt-1">
-                <Button
-                  asChild
-                  size="sm"
-                  className="w-full rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] text-xs font-bold text-white shadow-brand hover:opacity-95"
-                >
-                  <Link to="/contact">GET IN TOUCH</Link>
-                </Button>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="mt-5 text-center">
-          <Button
-            asChild
-            size="default"
-            variant="outline"
-            className="rounded-xl border-[#D8E7F5] px-6 py-2.5 font-display text-xs font-semibold text-[#002E7D] hover:border-[#0AA8F5] hover:bg-[#F5F9FC]"
-          >
-            <Link to="/services">
-              View All Services &amp; Pricing <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-            </Link>
-          </Button>
+          {/* Link to Full Catalogue */}
+          <div className="mt-5 text-center">
+            <ScrollReveal direction="up" delay={120}>
+              <Button
+                asChild
+                size="default"
+                className="rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-7 py-2.5 font-display text-xs font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
+              >
+                <Link to="/products">
+                  Explore All {products.length} Products in Catalogue <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                </Link>
+              </Button>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
@@ -312,7 +282,12 @@ function HomePage() {
         <div className="site-container">
           <SectionHeading
             eyebrow="Industries We Serve"
-            title="Cooling Solutions Across Critical Sectors"
+            title={
+              <>
+                Cooling Solutions Across <br className="hidden sm:inline" />
+                <span className="text-[#4FC7FF]">Critical Sectors</span>
+              </>
+            }
             copy="Custom-designed refrigeration systems engineered for precise temperature control and rigorous industrial demands."
             light
           />
@@ -331,7 +306,7 @@ function HomePage() {
               return (
                 <div
                   key={`${item.name}-${idx}`}
-                  className="group relative flex w-[215px] sm:w-[240px] shrink-0 flex-col overflow-hidden rounded-2xl border border-white/15 bg-white/[0.07] p-3 backdrop-blur-md transition-all duration-300 hover:border-[#4FC7FF]/60 hover:bg-white/[0.14] hover:shadow-xl hover:-translate-y-1"
+                  className="group relative flex w-[215px] sm:w-[240px] shrink-0 flex-col overflow-hidden rounded-2xl border border-white/15 bg-white/[0.07] p-3 backdrop-blur-md transition-all duration-300 hover:border-[#4FC7FF]/60 hover:bg-white/[0.14] hover:shadow-xl hover:-translate-y-1 active:scale-95 active:border-[#4FC7FF] cursor-pointer"
                 >
                   {/* Compact Image Header */}
                   <div className="relative h-24 sm:h-28 w-full overflow-hidden rounded-xl bg-[#001B4B]">
@@ -339,7 +314,7 @@ function HomePage() {
                       src={item.image}
                       alt={item.name}
                       loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 group-active:scale-105"
                     />
                     {/* Dark gradient overlay for contrast */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#001B4B]/80 via-transparent to-black/20" />
@@ -373,7 +348,7 @@ function HomePage() {
         {/* Subtle interaction indicator */}
         <div className="site-container mt-3 flex items-center justify-center gap-2 text-[0.7rem] text-[#8CB7DE]">
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#0AA8F5] animate-ping" />
-          <span>Continuous scrolling • Hover over any card to pause</span>
+          <span>Continuous scrolling • Hover or tap to pause</span>
         </div>
       </section>
 
@@ -383,7 +358,12 @@ function HomePage() {
           <ScrollReveal direction="left" duration={700}>
             <SectionHeading
               eyebrow="Why Choose AACS"
-              title="A Dependable Partner for Cold Storage & Refrigeration"
+              title={
+                <>
+                  A Dependable Partner for <br className="hidden sm:inline" />
+                  <span className="text-[#0AA8F5]">Cold Storage &amp; Refrigeration</span>
+                </>
+              }
               copy="From site layout planning to commissioning and maintenance, we combine technical rigor with transparent service."
             />
 
@@ -396,7 +376,7 @@ function HomePage() {
             <Button
               asChild
               size="default"
-              className="mt-4 rounded-xl bg-[#0050A7] px-6 py-2.5 font-display text-xs font-semibold text-white shadow-brand hover:bg-[#002E7D]"
+              className="mt-4 rounded-xl bg-[#0050A7] px-6 py-2.5 font-display text-xs font-semibold text-white shadow-brand hover:bg-[#002E7D] active:scale-95 transition-all duration-200"
             >
               <Link to="/contact">
                 Discuss Your Requirement <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
@@ -413,10 +393,10 @@ function HomePage() {
                 delay={idx * 60}
                 duration={500}
               >
-                <div className="flex flex-col justify-between rounded-xl border border-[#D8E7F5] bg-[#F5F9FC] p-4 shadow-sm transition hover:bg-white hover:border-[#0AA8F5] hover:shadow-card h-full">
+                <div className="interactive-card flex flex-col justify-between rounded-xl border border-[#D8E7F5] bg-[#F5F9FC] p-4 shadow-sm hover:bg-white hover:border-[#0AA8F5] hover:shadow-card active:scale-[0.985] active:border-[#0AA8F5] active:bg-white h-full cursor-pointer">
                   <div>
                     <div className="flex items-center gap-2.5">
-                      <span className="flex h-7 w-7 items-center justify-center rounded-md bg-[#0050A7] text-xs font-bold text-white">
+                      <span className="flex h-7 w-7 items-center justify-center rounded-md bg-[#0050A7] text-xs font-bold text-white transition-transform duration-300 group-hover:scale-110">
                         0{idx + 1}
                       </span>
                       <h4 className="font-display text-xs font-bold text-[#002E7D]">

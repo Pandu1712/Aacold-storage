@@ -54,10 +54,10 @@ function SolutionsPage() {
               <Sparkles className="h-3 w-3 text-[#4FC7FF]" />
               Turnkey Industry Solutions
             </span>
-            <h1 className="mt-2.5 max-w-3xl font-display text-3xl font-extrabold text-white md:text-4xl lg:text-5xl tracking-tight">
+            <h1 className="mt-2.5 max-w-4xl lg:max-w-5xl font-display text-3xl font-extrabold text-white md:text-4xl lg:text-5xl tracking-tight">
               Tailored Cooling for Critical Industries
             </h1>
-            <p className="mt-2 max-w-2xl text-xs sm:text-sm leading-relaxed text-[#D8E7F5]">
+            <p className="mt-2 max-w-3xl lg:max-w-4xl text-xs sm:text-sm leading-relaxed text-[#D8E7F5]">
               From precision post-harvest fruit ripening to -40°C blast freezing and sterile cleanrooms, AACS delivers customized thermal systems.
             </p>
           </ScrollReveal>
@@ -81,7 +81,7 @@ function SolutionsPage() {
                 <ScrollReveal
                   direction={isReversed ? "right" : "left"}
                   duration={700}
-                  className={`relative overflow-hidden rounded-2xl border border-[#D8E7F5] bg-[#F5F9FC] shadow-card-hover ${
+                  className={`group relative overflow-hidden rounded-2xl border border-[#D8E7F5] bg-[#F5F9FC] shadow-card-hover transition-all duration-300 active:scale-[0.985] cursor-pointer ${
                     isReversed ? "lg:col-start-2" : ""
                   }`}
                 >
@@ -91,9 +91,9 @@ function SolutionsPage() {
                     loading="lazy"
                     width={1200}
                     height={900}
-                    className="aspect-[4/3] w-full object-cover transition duration-700 hover:scale-105"
+                    className="aspect-[4/3] w-full object-cover transition duration-700 ease-out group-hover:scale-105 group-active:scale-105"
                   />
-                  <div className="absolute left-4 bottom-4 rounded-xl border border-white/20 bg-[#002E7D]/90 p-3 text-white backdrop-blur shadow-xl">
+                  <div className="absolute left-4 bottom-4 rounded-xl border border-white/20 bg-[#002E7D]/90 p-3 text-white backdrop-blur shadow-xl transition-transform duration-300 group-hover:scale-105">
                     <span className="block text-[0.62rem] font-bold uppercase tracking-wider text-[#4FC7FF]">
                       Operating Temperature
                     </span>
@@ -127,7 +127,7 @@ function SolutionsPage() {
                       {sector.items.map((item) => (
                         <span
                           key={item}
-                          className="rounded-full border border-[#D8E7F5] bg-white px-3 py-1 font-display text-xs font-semibold text-[#1A2B3C] shadow-sm"
+                          className="rounded-full border border-[#D8E7F5] bg-white px-3 py-1 font-display text-xs font-semibold text-[#1A2B3C] shadow-sm transition-all duration-200 hover:border-[#0AA8F5] hover:text-[#0050A7] active:scale-95"
                         >
                           {item}
                         </span>
@@ -150,7 +150,7 @@ function SolutionsPage() {
                     <Button
                       asChild
                       size="default"
-                      className="rounded-xl bg-[#0050A7] px-5 py-2 font-display text-xs font-semibold text-white shadow-brand hover:bg-[#002E7D]"
+                      className="rounded-xl bg-[#0050A7] px-5 py-2 font-display text-xs font-semibold text-white shadow-brand hover:bg-[#002E7D] active:scale-95 transition-all duration-200"
                     >
                       <Link to="/contact">
                         Request Solution Blueprint <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
@@ -160,7 +160,7 @@ function SolutionsPage() {
                       asChild
                       size="default"
                       variant="outline"
-                      className="rounded-xl border-[#D8E7F5] bg-[#F5F9FC] px-5 py-3 font-display text-xs font-semibold text-[#002E7D] hover:bg-white"
+                      className="rounded-xl border-[#D8E7F5] bg-[#F5F9FC] px-5 py-3 font-display text-xs font-semibold text-[#002E7D] hover:bg-white active:scale-95 transition-all duration-200"
                     >
                       <a href={`tel:+91${company.phone}`}>
                         <Phone className="mr-1.5 h-3.5 w-3.5 text-[#0AA8F5]" /> Speak to Engineer

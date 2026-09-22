@@ -64,10 +64,10 @@ function ProductsPage() {
               <Sparkles className="h-3 w-3 text-[#4FC7FF]" />
               AACS Product Catalogue
             </span>
-            <h1 className="mt-2.5 max-w-3xl font-display text-3xl font-extrabold text-white md:text-4xl lg:text-5xl tracking-tight">
+            <h1 className="mt-2.5 max-w-4xl lg:max-w-5xl font-display text-3xl font-extrabold text-white md:text-4xl lg:text-5xl tracking-tight">
               Commercial &amp; Industrial Cold Storage Systems
             </h1>
-            <p className="mt-2 max-w-2xl text-xs sm:text-sm leading-relaxed text-[#D8E7F5]">
+            <p className="mt-2 max-w-3xl lg:max-w-4xl text-xs sm:text-sm leading-relaxed text-[#D8E7F5]">
               Explore our complete range of cold storage rooms, ripening chambers,
               walk-in chillers, blast freezers, and insulated panel systems. Share your capacity and dimensions for a customized quotation.
             </p>
@@ -130,11 +130,20 @@ function ProductsPage() {
           </ScrollReveal>
         </div>
 
-        {/* Product Cards Grid */}
+        {/* Product Cards Grid with Alternating Left / Up / Right Animations */}
         <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((product) => (
-            <ProductCard key={product.slug} product={product} />
-          ))}
+          {filtered.map((product, idx) => {
+            const directions: ("left" | "up" | "right")[] = ["left", "up", "right"];
+            const dir = directions[idx % 3];
+            return (
+              <ProductCard
+                key={product.slug}
+                product={product}
+                direction={dir}
+                delay={(idx % 3) * 70}
+              />
+            );
+          })}
         </div>
 
         {/* Empty State */}

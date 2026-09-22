@@ -24,7 +24,7 @@ export function SectionHeading({
   className,
 }: {
   eyebrow: string;
-  title: string;
+  title: React.ReactNode;
   copy?: string;
   center?: boolean;
   light?: boolean;
@@ -34,15 +34,17 @@ export function SectionHeading({
     <ScrollReveal
       direction="down"
       duration={600}
-      className={cn("max-w-5xl lg:max-w-6xl", center && "mx-auto text-center", className)}
+      className={cn("w-full max-w-6xl", center && "mx-auto text-center", className)}
     >
-      <span className={light ? "eyebrow-light" : "eyebrow"}>
-        <Sparkles className="h-3.5 w-3.5" />
-        {eyebrow}
-      </span>
+      <div className={cn("inline-flex items-center", center && "justify-center")}>
+        <span className={light ? "eyebrow-light" : "eyebrow"}>
+          <Sparkles className="h-3.5 w-3.5 shrink-0" />
+          <span className="whitespace-nowrap">{eyebrow}</span>
+        </span>
+      </div>
       <h2
         className={cn(
-          "section-title mt-2",
+          "section-title mt-2 font-display text-xl sm:text-2xl md:text-3xl lg:text-[2.2rem] font-extrabold tracking-tight",
           light ? "text-white" : "text-[#002E7D]"
         )}
       >
@@ -51,7 +53,8 @@ export function SectionHeading({
       {copy && (
         <p
           className={cn(
-            "section-copy mt-1.5 max-w-none mx-auto text-justify",
+            "section-copy mt-2 w-full max-w-5xl text-xs sm:text-sm md:text-[0.95rem] leading-relaxed",
+            center ? "mx-auto text-center" : "text-left",
             light ? "text-[#D8E7F5]" : "text-[#5C728A]"
           )}
         >
@@ -62,10 +65,18 @@ export function SectionHeading({
   );
 }
 
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({
+  product,
+  direction = "up",
+  delay = 0,
+}: {
+  product: Product;
+  direction?: "up" | "down" | "left" | "right" | "zoom" | "fade";
+  delay?: number;
+}) {
   return (
-    <ScrollReveal direction="up" duration={600}>
-      <article className="product-card group flex flex-col justify-between h-full">
+    <ScrollReveal direction={direction} delay={delay} duration={650}>
+      <article className="product-card group flex flex-col justify-between h-full cursor-pointer">
         {/* Clickable Image Header with Price & Category Badges */}
         <Link
           to="/products/$slug"
@@ -78,7 +89,7 @@ export function ProductCard({ product }: { product: Product }) {
             loading="lazy"
             width={800}
             height={600}
-            className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-108"
+            className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-108 group-active:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#002E7D]/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-center justify-center">
             <span className="rounded-xl bg-white/95 px-3.5 py-1.5 font-display text-xs font-bold text-[#002E7D] shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1.5">
@@ -87,12 +98,12 @@ export function ProductCard({ product }: { product: Product }) {
           </div>
 
           {/* Category Chip */}
-          <span className="absolute left-3 top-3 rounded-full border border-[#D8E7F5]/80 bg-white/95 px-2.5 py-0.5 font-display text-[0.7rem] font-semibold text-[#0050A7] shadow-sm backdrop-blur-md">
+          <span className="absolute left-3 top-3 rounded-full border border-[#D8E7F5]/80 bg-white/95 px-2.5 py-0.5 font-display text-[0.7rem] font-semibold text-[#0050A7] shadow-sm backdrop-blur-md transition-transform duration-300 group-hover:scale-105">
             {product.category}
           </span>
 
           {/* Price Floating Tag on Image */}
-          <div className="absolute right-3 bottom-3 rounded-xl bg-[#002E7D]/95 border border-[#4FC7FF]/40 px-3 py-1 text-white shadow-lg backdrop-blur-md">
+          <div className="absolute right-3 bottom-3 rounded-xl bg-[#002E7D]/95 border border-[#4FC7FF]/40 px-3 py-1 text-white shadow-lg backdrop-blur-md transition-transform duration-300 group-hover:scale-105">
             <span className="block text-[0.6rem] uppercase tracking-wider text-[#4FC7FF] font-bold">
               Starting Price
             </span>
@@ -121,7 +132,7 @@ export function ProductCard({ product }: { product: Product }) {
             <Button
               asChild
               size="sm"
-              className="rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-2.5 py-1.5 text-xs font-semibold text-white shadow-brand hover:opacity-95"
+              className="rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-2.5 py-1.5 text-xs font-semibold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
             >
               <Link to="/contact">Get Quote</Link>
             </Button>
@@ -129,7 +140,7 @@ export function ProductCard({ product }: { product: Product }) {
               asChild
               size="sm"
               variant="outline"
-              className="rounded-xl border-[#D8E7F5] bg-[#F5F9FC] px-2.5 py-1.5 text-xs font-semibold text-[#002E7D] hover:border-[#0AA8F5] hover:bg-white cursor-pointer"
+              className="rounded-xl border-[#D8E7F5] bg-[#F5F9FC] px-2.5 py-1.5 text-xs font-semibold text-[#002E7D] hover:border-[#0AA8F5] hover:bg-white active:scale-95 transition-all duration-200 cursor-pointer"
             >
               <Link to="/products/$slug" params={{ slug: product.slug }}>
                 View Details <ArrowRight className="ml-1 h-3 w-3" />
@@ -142,21 +153,29 @@ export function ProductCard({ product }: { product: Product }) {
   );
 }
 
-export function ServiceCard({ service }: { service: Service }) {
+export function ServiceCard({
+  service,
+  direction = "up",
+  delay = 0,
+}: {
+  service: Service;
+  direction?: "up" | "down" | "left" | "right" | "zoom" | "fade";
+  delay?: number;
+}) {
   return (
-    <ScrollReveal direction="up" duration={600}>
-      <article className="flex flex-col justify-between overflow-hidden rounded-2xl border border-[#D8E7F5] bg-white p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-[#0AA8F5] hover:shadow-card-hover h-full text-justify">
+    <ScrollReveal direction={direction} delay={delay} duration={650}>
+      <article className="interactive-card group flex flex-col justify-between overflow-hidden rounded-2xl border border-[#D8E7F5] bg-white p-5 shadow-card h-full text-justify cursor-pointer">
         <div>
           <div className="flex items-center justify-between">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-brand">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-brand transition-transform duration-300 group-hover:scale-110 group-active:scale-105">
               <Settings className="h-5 w-5" />
             </span>
-            <span className="rounded-full bg-[#F5F9FC] border border-[#D8E7F5] px-3 py-0.5 text-xs font-bold text-[#0050A7]">
+            <span className="rounded-full bg-[#F5F9FC] border border-[#D8E7F5] px-3 py-0.5 text-xs font-bold text-[#0050A7] transition-colors duration-300 group-hover:bg-[#0050A7] group-hover:text-white">
               {service.price}
             </span>
           </div>
 
-          <h3 className="mt-3 font-display text-lg font-bold text-[#002E7D] text-left">
+          <h3 className="mt-3 font-display text-lg font-bold text-[#002E7D] transition-colors duration-300 group-hover:text-[#0AA8F5] text-left">
             {service.name}
           </h3>
 
@@ -180,7 +199,7 @@ export function ServiceCard({ service }: { service: Service }) {
           <Button
             asChild
             size="sm"
-            className="w-full rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] text-xs font-bold text-white shadow-brand hover:opacity-95"
+            className="w-full rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] text-xs font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
           >
             <Link to="/contact">GET IN TOUCH</Link>
           </Button>
@@ -207,13 +226,13 @@ export function TrustStrip() {
             return (
               <div
                 key={item.label}
-                className="flex items-center gap-3.5 p-4 transition hover:bg-[#F5F9FC]/80"
+                className="group flex items-center gap-3.5 p-4 transition-all duration-300 hover:bg-[#F5F9FC] active:bg-[#EBF5FC] active:scale-[0.985] cursor-pointer"
               >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-sm p-2.5">
-                  <Icon className="h-5 w-5" />
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-sm p-2.5 transition-transform duration-300 group-hover:scale-110 group-active:scale-105">
+                  <Icon className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
                 </span>
                 <div>
-                  <strong className="block font-display text-xs font-bold text-[#002E7D]">
+                  <strong className="block font-display text-xs font-bold text-[#002E7D] transition-colors duration-200 group-hover:text-[#0AA8F5]">
                     {item.label}
                   </strong>
                   <span className="text-[0.7rem] text-[#5C728A]">{item.desc}</span>
@@ -250,24 +269,26 @@ export function CtaBand() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-row items-center gap-2.5 sm:gap-3.5 w-full sm:w-auto flex-nowrap">
               <Button
                 asChild
                 size="default"
-                className="rounded-xl bg-white px-6 py-2.5 font-display text-xs font-bold text-[#002E7D] shadow-xl transition duration-300 hover:bg-[#F5F9FC] hover:scale-105"
+                className="flex-1 sm:flex-initial justify-center rounded-xl bg-white px-3.5 sm:px-6 py-2.5 font-display text-xs sm:text-sm font-bold text-[#002E7D] shadow-xl transition-all duration-300 hover:bg-[#F5F9FC] hover:scale-105 active:scale-95 whitespace-nowrap"
               >
-                <Link to="/contact">
-                  Get Quote <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                <Link to="/contact" className="flex items-center justify-center gap-1.5">
+                  <span>Get Quote</span>
+                  <ArrowRight className="h-3.5 w-3.5 shrink-0" />
                 </Link>
               </Button>
               <Button
                 asChild
                 size="default"
                 variant="outline"
-                className="rounded-xl border-2 border-white/40 bg-white/10 px-6 py-2.5 font-display text-xs font-bold text-white backdrop-blur transition hover:bg-white/20"
+                className="flex-1 sm:flex-initial justify-center rounded-xl border-2 border-white/40 bg-white/10 px-3.5 sm:px-6 py-2.5 font-display text-xs sm:text-sm font-bold text-white backdrop-blur transition-all duration-300 hover:bg-white/20 active:scale-95 whitespace-nowrap"
               >
-                <a href={`tel:+91${company.phone}`}>
-                  <Phone className="mr-1.5 h-3.5 w-3.5 text-[#4FC7FF]" /> Call Now
+                <a href={`tel:+91${company.phone}`} className="flex items-center justify-center gap-1.5">
+                  <Phone className="h-3.5 w-3.5 text-[#4FC7FF] shrink-0" />
+                  <span>Call Now</span>
                 </a>
               </Button>
             </div>

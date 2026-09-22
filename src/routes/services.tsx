@@ -56,10 +56,10 @@ function ServicesPage() {
               <Sparkles className="h-3 w-3 text-[#4FC7FF]" />
               AACS Engineering Services
             </span>
-            <h1 className="mt-2.5 max-w-3xl font-display text-3xl font-extrabold text-white md:text-4xl lg:text-5xl tracking-tight">
+            <h1 className="mt-2.5 max-w-4xl lg:max-w-5xl font-display text-3xl font-extrabold text-white md:text-4xl lg:text-5xl tracking-tight">
               Comprehensive Installation, Servicing &amp; AMC
             </h1>
-            <p className="mt-2 max-w-2xl text-xs sm:text-sm leading-relaxed text-[#D8E7F5]">
+            <p className="mt-2 max-w-3xl lg:max-w-4xl text-xs sm:text-sm leading-relaxed text-[#D8E7F5]">
               Ensure maximum refrigeration uptime, energy efficiency, and extended machinery life with certified technicians.
             </p>
           </ScrollReveal>
@@ -76,18 +76,21 @@ function ServicesPage() {
         />
 
         <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, idx) => (
-            <ScrollReveal
-              key={service.id}
-              direction="up"
-              delay={idx * 80}
-              duration={600}
-            >
-              <article className="flex flex-col justify-between overflow-hidden rounded-2xl border border-[#D8E7F5] bg-white p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-[#0AA8F5] hover:shadow-card-hover h-full">
+          {services.map((service, idx) => {
+            const directions: ("left" | "up" | "right")[] = ["left", "up", "right"];
+            const dir = directions[idx % 3];
+            return (
+              <ScrollReveal
+                key={service.id}
+                direction={dir}
+                delay={(idx % 3) * 80}
+                duration={650}
+              >
+              <article className="interactive-card group flex flex-col justify-between overflow-hidden rounded-2xl border border-[#D8E7F5] bg-white p-5 shadow-card h-full cursor-pointer">
                 <div>
                   {/* Header Badge */}
                   <div className="flex items-center justify-between">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-brand">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-brand transition-transform duration-300 group-hover:scale-110 group-active:scale-105">
                       <Wrench className="h-5 w-5" />
                     </span>
                     <div className="text-right">
@@ -100,7 +103,7 @@ function ServicesPage() {
                     </div>
                   </div>
 
-                  <h3 className="mt-3 font-display text-lg font-bold text-[#002E7D]">
+                  <h3 className="mt-3 font-display text-lg font-bold text-[#002E7D] transition-colors duration-300 group-hover:text-[#0AA8F5]">
                     {service.name}
                   </h3>
 
@@ -144,7 +147,7 @@ function ServicesPage() {
                   <Button
                     asChild
                     size="sm"
-                    className="w-full rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] py-2.5 text-xs font-bold text-white shadow-brand hover:opacity-95"
+                    className="w-full rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] py-2.5 text-xs font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
                   >
                     <Link to="/contact">
                       GET IN TOUCH <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
@@ -153,7 +156,8 @@ function ServicesPage() {
                 </div>
               </article>
             </ScrollReveal>
-          ))}
+          );
+        })}
         </div>
 
         {/* Emergency Service Strip */}

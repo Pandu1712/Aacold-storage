@@ -3,6 +3,19 @@ import coldRoomHero from "@/assets/cold-room-hero.jpg";
 import equipmentImage from "@/assets/refrigeration-equipment.jpg";
 import installationImage from "@/assets/technician-installation.jpg";
 import industryImage from "@/assets/industry-cold-storage.jpg";
+import flowerColdStorage from "@/assets/flower-cold-storage.jpg";
+import bananaRipening from "@/assets/banana-ripening.jpg";
+import mushroomChamber from "@/assets/mushroom-chamber.jpg";
+import meatColdStorage from "@/assets/meat-cold-storage.jpg";
+import iceCreamFreezer from "@/assets/ice-cream-freezer.jpg";
+import blastFreezer from "@/assets/blast-freezer.jpg";
+import walkInFreezer from "@/assets/walk-in-freezer.jpg";
+import walkInChiller from "@/assets/walk-in-chiller.jpg";
+import coldStoragePlant from "@/assets/cold-storage-plant.jpg";
+import pufPanels from "@/assets/puf-panels.jpg";
+import cleanRoomPanels from "@/assets/clean-room-panels.jpg";
+import frozenBerries from "@/assets/frozen-berries.jpg";
+import dairyColdStorage from "@/assets/dairy-cold-storage.jpg";
 
 export const company = {
   name: "AACS — AA Cold Storages",
@@ -16,7 +29,6 @@ export const company = {
     "#15/1B, Vaddarapalya, Kothnur Royal County, 1st Phase, Uttarahalli Hobli, Bengaluru, Karnataka – 560076, India",
   gstin: "29CEVPN3784H1ZK",
   businessHours: "Monday–Saturday: 9 AM – 7 PM",
-  established: "2020",
   locationName: "Bengaluru, Karnataka",
 };
 
@@ -26,6 +38,19 @@ export const images = {
   equipmentImage,
   installationImage,
   industryImage,
+  flowerColdStorage,
+  bananaRipening,
+  mushroomChamber,
+  meatColdStorage,
+  iceCreamFreezer,
+  blastFreezer,
+  walkInFreezer,
+  walkInChiller,
+  coldStoragePlant,
+  pufPanels,
+  cleanRoomPanels,
+  frozenBerries,
+  dairyColdStorage,
 };
 
 export const productCategories = [
@@ -181,7 +206,7 @@ export const products: Product[] = [
       { label: "Airflow Type", value: "Low-velocity dual discharge" },
       { label: "Insulation", value: "80mm High Density PUF" },
     ],
-    image: industryImage,
+    image: flowerColdStorage,
   },
   {
     slug: "walk-in-chiller",
@@ -219,7 +244,7 @@ export const products: Product[] = [
       { label: "Panel Thickness", value: "60mm / 80mm PUF" },
       { label: "Door Type", value: "Flush mounted swing door with viewport" },
     ],
-    image: coldRoomHero,
+    image: walkInChiller,
   },
   {
     slug: "walk-in-freezer",
@@ -258,7 +283,7 @@ export const products: Product[] = [
       { label: "Feature", value: "Ventilated Heater" },
       { label: "Brand", value: "AACS" },
     ],
-    image: equipmentImage,
+    image: walkInFreezer,
   },
   {
     slug: "banana-ripening-chamber",
@@ -295,7 +320,7 @@ export const products: Product[] = [
       { label: "Temperature Range", value: "14°C to 18°C" },
       { label: "Humidity", value: "85% to 95% RH" },
     ],
-    image: industryImage,
+    image: bananaRipening,
   },
   {
     slug: "ripening-chamber",
@@ -333,7 +358,7 @@ export const products: Product[] = [
       { label: "Frequency", value: "50 Hz" },
       { label: "Brand", value: "AACS" },
     ],
-    image: industryImage,
+    image: bananaRipening,
   },
   {
     slug: "mushroom-growing-chamber",
@@ -368,7 +393,7 @@ export const products: Product[] = [
       { label: "Humidity Control", value: "Up to 95% RH" },
       { label: "Air Filtration", value: "Integrated intake filtration" },
     ],
-    image: industryImage,
+    image: mushroomChamber,
   },
   {
     slug: "blast-freezer-room",
@@ -406,7 +431,7 @@ export const products: Product[] = [
       { label: "Refrigerant", value: "R404A / R448A / Low Temp" },
       { label: "Power Supply", value: "415V 3-Phase" },
     ],
-    image: equipmentImage,
+    image: blastFreezer,
   },
   {
     slug: "meat-cold-storage",
@@ -443,7 +468,7 @@ export const products: Product[] = [
       { label: "Temperature", value: "-18°C to -20°C" },
       { label: "Brand", value: "AACS" },
     ],
-    image: coldRoomHero,
+    image: meatColdStorage,
   },
   {
     slug: "ice-cream-freezer-room",
@@ -479,7 +504,7 @@ export const products: Product[] = [
       { label: "Temperature", value: "-18°C to -20°C" },
       { label: "Brand", value: "AACS" },
     ],
-    image: equipmentImage,
+    image: iceCreamFreezer,
   },
   {
     slug: "cold-storage-plant",
@@ -524,7 +549,7 @@ export const products: Product[] = [
       { label: "Voltage", value: "415 V" },
       { label: "Brand", value: "AACS" },
     ],
-    image: equipmentImage,
+    image: coldStoragePlant,
   },
   {
     slug: "puf-insulated-panels",
@@ -558,7 +583,7 @@ export const products: Product[] = [
       { label: "Thermal Conductivity", value: "0.022 – 0.024 W/m·K" },
       { label: "Brand", value: "AACS" },
     ],
-    image: installationImage,
+    image: pufPanels,
   },
   {
     slug: "clean-room-panels",
@@ -592,7 +617,7 @@ export const products: Product[] = [
       { label: "Joint", value: "Flush Coving & Silicone Seal" },
       { label: "Brand", value: "AACS" },
     ],
-    image: installationImage,
+    image: cleanRoomPanels,
   },
 ];
 
@@ -768,7 +793,7 @@ export const solutionSectors: SolutionSector[] = [
     subtitle: "Sub-Zero Texture & Deep Freeze Protection",
     description:
       "Heavy industrial freezer systems designed for rapid core freezing, ice cream hard storage, and deep frozen storage down to -40°C.",
-    image: equipmentImage,
+    image: frozenBerries,
     temperature: "-18°C to -35°C (Deep Freeze)",
     items: [
       "Meat",
@@ -789,7 +814,7 @@ export const solutionSectors: SolutionSector[] = [
     subtitle: "Strict Temperature Controlled Storage & Cleanrooms",
     description:
       "High-precision temperature controlled storage, walk-in chambers, and clean room enclosures complying with strict regulatory temperature uniformity norms.",
-    image: coldRoomHero,
+    image: cleanRoomPanels,
     temperature: "+2°C to +8°C / -20°C (Controlled)",
     items: [
       "Temperature Controlled Storage",
@@ -810,7 +835,7 @@ export const solutionSectors: SolutionSector[] = [
     subtitle: "Walk-In Cooling & Multi-Commodity Warehousing",
     description:
       "Turnkey multi-commodity cold storage warehouses, walk-in commercial chillers and freezers, and industrial refrigeration for high-throughput enterprises.",
-    image: installationImage,
+    image: coldStoragePlant,
     temperature: "Multi-Zone (-25°C to +15°C)",
     items: [
       "Walk-In Chillers",

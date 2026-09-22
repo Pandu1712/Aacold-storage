@@ -34,52 +34,127 @@ const navLinks = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = useRouterState({ select: (state) => state.location.pathname });
 
+  // Auto-close menu when navigating to new route
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  // Track scroll position for dynamic header elevation transition (blur + shadow)
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-[#D8E7F5]/80 bg-white/95 backdrop-blur-xl transition-all shadow-subtle">
+    <header
+      className={cn(
+        "sticky top-0 z-50 border-b backdrop-blur-xl transition-all duration-300 ease-out",
+        isScrolled
+          ? "bg-white/95 border-[#D8E7F5] shadow-[0_6px_25px_rgba(0,46,125,0.08)]"
+          : "bg-white/90 border-[#D8E7F5]/70 shadow-subtle"
+      )}
+    >
       {/* 1. TOP ANNOUNCEMENT & CREDENTIALS BAR */}
-      <div className="border-b border-[#D8E7F5]/60 bg-[#F5F9FC] py-2 text-xs text-[#5C728A]">
-        <div className="site-container flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <span className="inline-flex items-center gap-1.5 font-medium text-[#1A2B3C]">
-              <MapPin className="h-3.5 w-3.5 text-[#0050A7]" />
-              Bengaluru, Karnataka, India
+      <div className="border-b border-[#D8E7F5]/60 bg-[#F5F9FC] py-1.5 sm:py-2 text-[0.68rem] sm:text-xs text-[#5C728A] transition-colors">
+        <div className="site-container flex items-center justify-between gap-2 sm:gap-4 overflow-hidden">
+          {/* Left Info: Location (Always visible on mobile & desktop) & GSTIN / Hours (On sm/md/lg) */}
+          <div className="flex items-center gap-2.5 sm:gap-5 min-w-0">
+            {/* Location (Visible on all devices) */}
+            <span className="inline-flex items-center gap-1 sm:gap-1.5 font-semibold text-[#1A2B3C] shrink-0 transition-transform active:scale-95">
+              <MapPin className="h-3.5 w-3.5 text-[#0050A7] shrink-0 animate-float-slow" />
+              <span>Bengaluru, Karnataka</span>
             </span>
-            <span className="hidden md:inline-flex items-center gap-1.5 font-medium">
-              <Clock className="h-3.5 w-3.5 text-[#0050A7]" />
+
+            {/* GSTIN (Visible on tablet & desktop) */}
+            <span className="hidden sm:inline-flex items-center gap-1 sm:gap-1.5 font-bold text-[#002E7D] shrink-0">
+              <ShieldCheck className="h-3.5 w-3.5 text-[#0AA8F5] shrink-0" />
+              <span>GSTIN:</span>{" "}
+              <span className="font-mono text-[#0050A7] text-xs font-bold tracking-tight">
+                {company.gstin}
+              </span>
+            </span>
+
+            {/* Working Hours (Visible on medium+ screens) */}
+            <span className="hidden md:inline-flex items-center gap-1.5 font-medium shrink-0">
+              <Clock className="h-3.5 w-3.5 text-[#0050A7] shrink-0" />
               {company.businessHours}
-            </span>
-            <span className="inline-flex items-center gap-1.5 font-semibold text-[#002E7D]">
-              <ShieldCheck className="h-3.5 w-3.5 text-[#0AA8F5]" />
-              GSTIN: {company.gstin}
             </span>
           </div>
 
-          <div className="flex items-center gap-4 font-semibold text-[#0050A7]">
+          {/* Right Direct Contact Links */}
+          <div className="flex items-center gap-2 sm:gap-4 font-semibold text-[#0050A7] shrink-0">
             <a
               href={`tel:+91${company.phone}`}
-              className="inline-flex items-center gap-1.5 transition hover:text-[#0AA8F5]"
+              className="inline-flex items-center gap-1 font-bold text-[#0050A7] transition-all hover:text-[#0AA8F5] active:scale-95 whitespace-nowrap text-[0.68rem] sm:text-xs"
             >
-              <Phone className="h-3.5 w-3.5" /> +91 {company.phone}
+              <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-[#0050A7] transition-transform group-hover:rotate-12" />
+              <span>+91 {company.phone}</span>
             </a>
             <a
               href={`https://wa.me/91${company.whatsapp}?text=Hello%20AACS,%20I%20would%20like%20to%20inquire%20about%20cold%20storage%20solutions`}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-[#008938] transition hover:opacity-80"
+              className="hidden sm:inline-flex items-center gap-1 text-[#008938] transition-all hover:opacity-80 active:scale-95 whitespace-nowrap text-xs font-bold"
             >
-              <WhatsAppBrandIcon className="h-4 w-4" /> WhatsApp
+              <WhatsAppBrandIcon className="h-3.5 w-3.5" /> WhatsApp
             </a>
           </div>
         </div>
       </div>
 
-      {/* 2. MAIN NAVBAR (PREVIOUS CLEAN LAYOUT) */}
-      <div className="site-container flex h-16 items-center justify-between gap-4 lg:h-18">
-        <Link to="/" className="shrink-0" aria-label="AA Cold Storages Home">
-          <AACSLogo variant="light" />
-        </Link>
+      {/* 2. MAIN NAVBAR */}
+      <div className="site-container flex h-16 items-center justify-between gap-3 sm:gap-4 lg:h-18">
+        {/* Left Side: Modern Frameless Hamburger (LHS) + Hairline Divider + Logo */}
+        <div className="flex items-center gap-2 sm:gap-3.5">
+          {/* Sleek Frameless Mobile Hamburger Button with Smooth Icon Morph */}
+          <button
+            className="flex h-10 w-10 items-center justify-center rounded-xl text-[#002E7D] hover:bg-[#EBF5FC] hover:text-[#0AA8F5] active:scale-90 transition-all duration-200 lg:hidden shrink-0 -ml-1 cursor-pointer"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen(!open)}
+          >
+            <div className="relative flex h-5 w-5 flex-col items-center justify-center gap-1.25">
+              <span
+                className={cn(
+                  "h-[2.5px] w-5 rounded-full bg-current transition-all duration-300 ease-out origin-center",
+                  open && "translate-y-[6.5px] rotate-45 bg-[#0AA8F5]"
+                )}
+              />
+              <span
+                className={cn(
+                  "h-[2.5px] w-5 rounded-full bg-current transition-all duration-200 ease-out",
+                  open && "opacity-0 scale-0"
+                )}
+              />
+              <span
+                className={cn(
+                  "h-[2.5px] w-5 rounded-full bg-current transition-all duration-300 ease-out origin-center",
+                  open && "-translate-y-[6.5px] -rotate-45 bg-[#0AA8F5]"
+                )}
+              />
+            </div>
+          </button>
+
+          {/* Hairline Divider for visual separation on mobile */}
+          <span className="hidden xs:block h-6 w-[1.5px] bg-[#D8E7F5]/80 lg:hidden shrink-0 transition-opacity" />
+
+          {/* Logo with Touch Spring Effect */}
+          <Link
+            to="/"
+            className="shrink-0 transition-transform active:scale-95 duration-200"
+            aria-label="AA Cold Storages Home"
+            onClick={() => setOpen(false)}
+          >
+            <AACSLogo variant="light" />
+          </Link>
+        </div>
 
         {/* Desktop Navigation Links */}
         <nav
@@ -103,70 +178,107 @@ export function SiteHeader() {
           })}
         </nav>
 
-        {/* Primary CTA Button */}
-        <div className="hidden items-center gap-3 lg:flex">
+        {/* Primary CTA Button (Desktop & Tablet) */}
+        <div className="hidden sm:flex items-center gap-3 shrink-0">
           <Button
             asChild
-            className="rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-6 py-2.5 font-display text-sm font-semibold tracking-wide text-white shadow-brand transition duration-300 hover:opacity-95 hover:shadow-brand-lg"
+            className="rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-5 sm:px-6 py-2.5 font-display text-xs sm:text-sm font-bold tracking-wide text-white shadow-brand transition-all duration-300 hover:opacity-95 hover:shadow-brand-lg active:scale-95 shrink-0"
           >
             <Link to="/contact">
-              GET A QUOTE <ArrowRight className="ml-1.5 h-4 w-4" />
+              <span>GET A QUOTE</span>
+              <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
         </div>
-
-        {/* Mobile Hamburger Button */}
-        <button
-          className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#D8E7F5] bg-[#F5F9FC] text-[#002E7D] transition hover:bg-[#D8E7F5] lg:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen(!open)}
-        >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
       </div>
 
-      {/* 3. MOBILE MENU DROPDOWN */}
-      {open && (
-        <nav
-          className="border-t border-[#D8E7F5] bg-white px-5 py-6 shadow-2xl lg:hidden animate-fade-up"
-          aria-label="Mobile navigation"
-        >
-          <div className="grid gap-2">
-            {navLinks.map((item) => {
-              const isActive =
-                item.to === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.to);
-              return (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  onClick={() => setOpen(false)}
-                  className={`flex items-center justify-between rounded-xl px-4 py-3.5 font-display text-base font-semibold transition ${
-                    isActive
-                      ? "bg-[#F5F9FC] text-[#0050A7]"
-                      : "text-[#1A2B3C] hover:bg-[#F5F9FC]"
-                  }`}
-                >
-                  <span>{item.label}</span>
-                  <ArrowRight className="h-4 w-4 text-[#0AA8F5]" />
-                </Link>
-              );
-            })}
-          </div>
+      {/* Mobile Backdrop Overlay (Smooth fade) */}
+      <div
+        className={cn(
+          "fixed inset-0 top-full h-[100dvh] bg-[#001D47]/40 backdrop-blur-xs transition-opacity duration-300 lg:hidden",
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        )}
+        onClick={() => setOpen(false)}
+        aria-hidden="true"
+      />
 
-          <div className="mt-6 border-t border-[#D8E7F5] pt-5">
-            <Button
-              asChild
-              className="w-full rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] py-3 text-white font-display font-semibold shadow-brand"
+      {/* 3. MOBILE MENU DROPDOWN (Smooth accordion + slide & stagger animation) */}
+      <div
+        className={cn(
+          "grid transition-[grid-template-rows,opacity] duration-300 ease-in-out lg:hidden overflow-hidden",
+          open
+            ? "grid-rows-[1fr] opacity-100 border-t border-[#D8E7F5]/80 bg-white/98 backdrop-blur-2xl shadow-2xl visible"
+            : "grid-rows-[0fr] opacity-0 border-t-0 bg-transparent shadow-none pointer-events-none invisible"
+        )}
+      >
+        <div className="min-h-0 overflow-hidden">
+          <nav
+            className="min-h-0 overflow-y-auto max-h-[calc(100dvh-5.5rem)] px-5 py-6"
+            aria-label="Mobile navigation"
+          >
+            <div className="grid gap-2">
+              {navLinks.map((item, index) => {
+                const isActive =
+                  item.to === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(item.to);
+                return (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    onClick={() => setOpen(false)}
+                    style={{
+                      transitionDelay: open ? `${index * 45}ms` : "0ms",
+                    }}
+                    className={cn(
+                      "group flex items-center justify-between rounded-xl px-4 py-3.5 font-display text-base font-semibold transition-all duration-300 active:scale-[0.98]",
+                      open ? "translate-x-0 opacity-100" : "-translate-x-3 opacity-0",
+                      isActive
+                        ? "bg-gradient-to-r from-[#F0F7FD] to-[#E5F3FC] text-[#0050A7] shadow-sm font-bold border-l-4 border-[#0050A7]"
+                        : "text-[#1A2B3C] hover:bg-[#F5F9FC] active:bg-[#EBF5FC]"
+                    )}
+                  >
+                    <span className="flex items-center gap-2.5">
+                      <span
+                        className={cn(
+                          "h-1.5 w-1.5 rounded-full transition-all duration-200",
+                          isActive ? "bg-[#0AA8F5] scale-125" : "bg-transparent group-hover:bg-[#0AA8F5]/50"
+                        )}
+                      />
+                      <span>{item.label}</span>
+                    </span>
+                    <ArrowRight
+                      className={cn(
+                        "h-4 w-4 transition-transform duration-200 text-[#0AA8F5]",
+                        "group-hover:translate-x-1 group-active:translate-x-1",
+                        isActive ? "opacity-100" : "opacity-60 group-hover:opacity-100"
+                      )}
+                    />
+                  </Link>
+                );
+              })}
+            </div>
+
+            <div
+              style={{ transitionDelay: open ? `${navLinks.length * 45}ms` : "0ms" }}
+              className={cn(
+                "mt-6 border-t border-[#D8E7F5] pt-5 transition-all duration-300",
+                open ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+              )}
             >
-              <Link to="/contact" onClick={() => setOpen(false)}>
-                GET A QUOTE
-              </Link>
-            </Button>
-          </div>
-        </nav>
-      )}
+              <Button
+                asChild
+                className="w-full rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] py-3 text-white font-display font-semibold shadow-brand hover:shadow-brand-lg active:scale-[0.98] transition-all duration-200"
+              >
+                <Link to="/contact" onClick={() => setOpen(false)}>
+                  <span>GET A QUOTE</span>
+                  <ArrowRight className="ml-1.5 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </nav>
+        </div>
+      </div>
     </header>
   );
 }
@@ -177,7 +289,7 @@ export function SiteFooter() {
   };
 
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-b from-[#001333] via-[#001D47] to-[#000B1E] pb-24 text-[#F5F9FC] md:pb-0 select-none">
+    <footer className="relative overflow-hidden bg-gradient-to-b from-[#001333] via-[#001D47] to-[#000B1E] text-[#F5F9FC] pb-0 select-none">
       {/* Radial Top Spotlight & Decorative Giant Snowflake Watermark */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_40%_at_50%_0%,rgba(10,168,245,0.12),transparent)] pointer-events-none" />
       <Snowflake
@@ -209,27 +321,34 @@ export function SiteFooter() {
               </div>
             </div>
 
-            {/* Quick Action Buttons */}
-            <div className="mt-6 flex flex-wrap items-center gap-2.5">
+            {/* Quick Action Buttons (Icon-only on mobile for Call/WhatsApp, full text on sm+, Get Quote remains full text) */}
+            <div className="mt-6 flex items-center gap-2 sm:gap-2.5 flex-nowrap sm:flex-wrap">
               <a
                 href={`tel:+91${company.phone}`}
-                className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/10 px-3.5 py-2 text-xs font-semibold text-white backdrop-blur transition hover:border-[#0AA8F5] hover:bg-[#0050A7]/50"
+                title={`Call Us: +91 ${company.phone}`}
+                aria-label="Call Us"
+                className="inline-flex h-9 w-9 sm:h-auto sm:w-auto items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/10 p-2 sm:px-3.5 sm:py-2 text-xs font-semibold text-white backdrop-blur transition hover:border-[#0AA8F5] hover:bg-[#0050A7]/50 active:scale-95 shrink-0"
               >
-                <Phone className="h-3.5 w-3.5 text-[#38BDF8]" /> Call Us
+                <Phone className="h-3.5 w-3.5 text-[#38BDF8]" />
+                <span className="hidden sm:inline">Call Us</span>
               </a>
               <a
                 href={`https://wa.me/91${company.whatsapp}?text=Hi%20AACS,%20I%20need%20information%20on%20cold%20storage%20solutions`}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-xl border border-[#25D366]/40 bg-[#25D366]/20 px-3.5 py-2 text-xs font-semibold text-white backdrop-blur transition hover:bg-[#25D366]/30 hover:border-[#25D366]"
+                title="WhatsApp Us"
+                aria-label="WhatsApp Us"
+                className="inline-flex h-9 w-9 sm:h-auto sm:w-auto items-center justify-center gap-1.5 rounded-xl border border-[#25D366]/40 bg-[#25D366]/20 p-2 sm:px-3.5 sm:py-2 text-xs font-semibold text-white backdrop-blur transition hover:bg-[#25D366]/30 hover:border-[#25D366] active:scale-95 shrink-0"
               >
-                <WhatsAppBrandIcon className="h-4 w-4" /> WhatsApp
+                <WhatsAppBrandIcon className="h-4 w-4" />
+                <span className="hidden sm:inline">WhatsApp</span>
               </a>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-4 py-2 text-xs font-semibold text-white shadow-[0_4px_14px_rgba(0,80,167,0.3)] transition hover:scale-105"
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-4 py-2 text-xs font-bold text-white shadow-[0_4px_14px_rgba(0,80,167,0.3)] transition hover:scale-105 active:scale-95 whitespace-nowrap"
               >
-                Get Quote <ArrowRight className="h-3.5 w-3.5" />
+                <span>Get Quote</span>
+                <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
           </div>
@@ -385,22 +504,22 @@ export function SiteFooter() {
 
       {/* 3. BOTTOM COPYRIGHT & BACK-TO-TOP STRIP */}
       <div className="relative z-10 border-t border-[#133D8A]/70 bg-[#000E26]/80 backdrop-blur-md">
-        <div className="site-container flex flex-col gap-3 py-4 text-xs text-[#A3C2DE] sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#0AA8F5]" />
-            <span>
+        <div className="site-container flex flex-col gap-2.5 py-3.5 text-xs text-[#A3C2DE] sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-[0.68rem] xs:text-xs text-[#A3C2DE] whitespace-nowrap overflow-x-auto scrollbar-none">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#0AA8F5]" />
+            <span className="whitespace-nowrap">
               © 2026 <strong>AACS — AA Cold Storages</strong>. All Rights Reserved.
             </span>
           </div>
 
-          <span className="hidden md:inline-block font-medium text-[#7DD3FC]">
+          <span className="hidden lg:inline-block text-xs font-medium text-[#7DD3FC] whitespace-nowrap">
             Complete Cooling Solutions • Bengaluru, Karnataka
           </span>
 
           <button
             onClick={scrollToTop}
             aria-label="Scroll back to top"
-            className="group inline-flex items-center gap-1.5 text-xs text-[#A3C2DE] hover:text-white transition-colors duration-200 self-start sm:self-auto cursor-pointer"
+            className="group inline-flex items-center gap-1.5 text-[0.7rem] sm:text-xs text-[#A3C2DE] hover:text-white transition-colors duration-200 self-start sm:self-auto cursor-pointer whitespace-nowrap"
           >
             <span>Back to Top</span>
             <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/10 text-white group-hover:bg-[#0AA8F5] transition-colors">
@@ -460,7 +579,7 @@ export function StickyActions() {
           : "opacity-0 translate-y-8 pointer-events-none"
       )}
     >
-      {/* 1. STICKY GET A QUOTE BUTTON (PURE ICON BY DEFAULT, TEXT ON CLICK) */}
+      {/* 1. STICKY CALL / GET A QUOTE BUTTON (PHONE ICON) */}
       <div className="relative flex items-center justify-end">
         {/* Popout Text Card When Clicked */}
         {activeAction === "quote" && (
@@ -468,11 +587,11 @@ export function StickyActions() {
             <div className="flex items-start justify-between gap-2">
               <div>
                 <div className="font-display text-xs font-bold text-[#002E7D] uppercase tracking-wider flex items-center gap-1.5">
-                  <Snowflake className="h-3.5 w-3.5 text-[#0AA8F5]" />
-                  Get a Quote
+                  <Phone className="h-3.5 w-3.5 text-[#0AA8F5]" />
+                  Call / Get a Quote
                 </div>
                 <p className="mt-1 text-[0.72rem] text-[#475569] leading-relaxed">
-                  Get instant customized pricing for cold rooms, blast freezers &amp; PUF panels.
+                  Call directly for immediate assistance or request a custom quote online.
                 </p>
               </div>
               <button
@@ -484,29 +603,39 @@ export function StickyActions() {
                 <X className="h-3.5 w-3.5" />
               </button>
             </div>
-            <Link
-              to="/contact"
-              onClick={() => setActiveAction(null)}
-              className="mt-2.5 flex h-9 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-3 font-display text-xs font-bold text-white shadow-sm hover:opacity-95 transition"
-            >
-              <span>Request Quote Form</span>
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
+            <div className="mt-2.5 flex flex-col gap-1.5">
+              <a
+                href={`tel:+91${company.phone}`}
+                onClick={() => setActiveAction(null)}
+                className="flex h-9 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-3 font-display text-xs font-bold text-white shadow-sm hover:opacity-95 transition"
+              >
+                <Phone className="h-3.5 w-3.5" />
+                <span>Call +91 {company.phone}</span>
+              </a>
+              <Link
+                to="/contact"
+                onClick={() => setActiveAction(null)}
+                className="flex h-8 items-center justify-center gap-1.5 rounded-xl border border-[#D8E7F5] bg-[#F5F9FC] px-3 font-display text-[0.72rem] font-bold text-[#002E7D] hover:bg-white transition"
+              >
+                <span>Request Online Quote</span>
+                <ArrowRight className="h-3 w-3" />
+              </Link>
+            </div>
           </div>
         )}
 
-        {/* Pure Circular Icon Button */}
+        {/* Pure Circular Phone Icon Button */}
         <button
           type="button"
           onClick={() => toggleAction("quote")}
-          title="Get a Quote (Click to view details)"
-          aria-label="Get a Quote"
+          title={`Call Us: +91 ${company.phone}`}
+          aria-label="Call Us"
           className={cn(
             "group relative flex h-12 w-12 sm:h-13 sm:w-13 items-center justify-center rounded-full bg-gradient-to-r from-[#0050A7] via-[#0066CC] to-[#0AA8F5] text-white shadow-[0_6px_22px_rgba(0,80,167,0.38)] hover:shadow-[0_10px_30px_rgba(0,80,167,0.55)] hover:scale-110 active:scale-95 transition-all duration-300",
             activeAction === "quote" && "ring-4 ring-[#0AA8F5]/35 scale-105"
           )}
         >
-          <Snowflake className="h-5 w-5 sm:h-6 sm:w-6 text-white transition-transform duration-300 group-hover:rotate-45" />
+          <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-white transition-transform duration-300 group-hover:rotate-12 group-active:rotate-12" />
         </button>
       </div>
 
