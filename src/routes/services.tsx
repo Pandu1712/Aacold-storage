@@ -149,7 +149,7 @@ function ServicesPage() {
                     size="sm"
                     className="w-full rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] py-2.5 text-xs font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
                   >
-                    <Link to="/contact">
+                    <Link to="/contact" hash="quote-form">
                       GET IN TOUCH <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                     </Link>
                   </Button>

@@ -152,7 +152,7 @@ function SolutionsPage() {
                       size="default"
                       className="rounded-xl bg-[#0050A7] px-5 py-2 font-display text-xs font-semibold text-white shadow-brand hover:bg-[#002E7D] active:scale-95 transition-all duration-200"
                     >
-                      <Link to="/contact">
+                      <Link to="/contact" hash="quote-form">
                         Request Solution Blueprint <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                       </Link>
                     </Button>

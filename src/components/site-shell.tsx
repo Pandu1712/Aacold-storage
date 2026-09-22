@@ -184,7 +184,7 @@ export function SiteHeader() {
             asChild
             className="rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-5 sm:px-6 py-2.5 font-display text-xs sm:text-sm font-bold tracking-wide text-white shadow-brand transition-all duration-300 hover:opacity-95 hover:shadow-brand-lg active:scale-95 shrink-0"
           >
-            <Link to="/contact">
+            <Link to="/contact" hash="quote-form">
               <span>GET A QUOTE</span>
               <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
@@ -270,7 +270,18 @@ export function SiteHeader() {
                 asChild
                 className="w-full rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] py-3 text-white font-display font-semibold shadow-brand hover:shadow-brand-lg active:scale-[0.98] transition-all duration-200"
               >
-                <Link to="/contact" onClick={() => setOpen(false)}>
+                <Link
+                  to="/contact"
+                  hash="quote-form"
+                  onClick={() => {
+                    setOpen(false);
+                    if (pathname === "/contact") {
+                      setTimeout(() => {
+                        document.getElementById("quote-form-section")?.scrollIntoView({ behavior: "smooth" });
+                      }, 100);
+                    }
+                  }}
+                >
                   <span>GET A QUOTE</span>
                   <ArrowRight className="ml-1.5 h-4 w-4" />
                 </Link>
@@ -345,6 +356,7 @@ export function SiteFooter() {
               </a>
               <Link
                 to="/contact"
+                hash="quote-form"
                 className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-4 py-2 text-xs font-bold text-white shadow-[0_4px_14px_rgba(0,80,167,0.3)] transition hover:scale-105 active:scale-95 whitespace-nowrap"
               >
                 <span>Get Quote</span>
@@ -614,6 +626,7 @@ export function StickyActions() {
               </a>
               <Link
                 to="/contact"
+                hash="quote-form"
                 onClick={() => setActiveAction(null)}
                 className="flex h-8 items-center justify-center gap-1.5 rounded-xl border border-[#D8E7F5] bg-[#F5F9FC] px-3 font-display text-[0.72rem] font-bold text-[#002E7D] hover:bg-white transition"
               >

@@ -146,7 +146,7 @@ function ProductDetailPage() {
                     size="default"
                     className="rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-6 py-2.5 font-display text-xs font-bold text-white shadow-brand hover:opacity-95"
                   >
-                    <Link to="/contact">
+                    <Link to="/contact" search={{ item: product.name }} hash="quote-form">
                       {product.ctaText ?? "GET A QUOTE"} <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                     </Link>
                   </Button>

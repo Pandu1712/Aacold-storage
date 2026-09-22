@@ -113,7 +113,7 @@ function AboutPage() {
                 size="default"
                 className="rounded-xl bg-[#0050A7] px-6 py-2.5 font-display text-xs font-semibold text-white shadow-brand hover:bg-[#002E7D]"
               >
-                <Link to="/contact">
+                <Link to="/contact" hash="quote-form">
                   Consult With Our Team <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                 </Link>
               </Button>

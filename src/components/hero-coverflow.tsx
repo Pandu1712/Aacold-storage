@@ -270,7 +270,7 @@ export function HeroCoverflow() {
                   size="sm"
                   className="flex-1 sm:flex-initial h-9 sm:h-11 rounded-full bg-gradient-to-r from-[#0050A7] via-[#0066CC] to-[#0AA8F5] px-2.5 sm:pl-4.5 sm:pr-2 font-display text-[0.65rem] xs:text-xs md:text-sm font-bold tracking-wider text-white shadow-[0_4px_18px_rgba(0,80,167,0.3)] hover:shadow-[0_6px_24px_rgba(0,80,167,0.45)] hover:scale-[1.02] active:scale-95 transition-all duration-300 whitespace-nowrap justify-center"
                 >
-                  <Link to="/contact" className="flex items-center justify-center">
+                  <Link to="/contact" hash="quote-form" className="flex items-center justify-center">
                     <span>GET A QUOTE</span>
                     <span className="ml-1 sm:ml-2.5 flex h-5 w-5 sm:h-7.5 sm:w-7.5 items-center justify-center rounded-full bg-white text-[#0050A7] shadow-sm transition-transform duration-300 group-hover:translate-x-1 group-active:translate-x-1 shrink-0">
                       <ArrowRight className="h-2.5 w-2.5 sm:h-3.5 sm:w-3.5" />

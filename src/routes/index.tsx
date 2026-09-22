@@ -203,7 +203,7 @@ function HomePage() {
                       size="sm"
                       className="w-full rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] text-xs font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
                     >
-                      <Link to="/contact">Book Service / Get Quote</Link>
+                      <Link to="/contact" hash="quote-form">Book Service / Get Quote</Link>
                     </Button>
                   </div>
                 </article>
@@ -374,7 +374,7 @@ function HomePage() {
               size="default"
               className="mt-4 rounded-xl bg-[#0050A7] px-6 py-2.5 font-display text-xs font-semibold text-white shadow-brand hover:bg-[#002E7D] active:scale-95 transition-all duration-200"
             >
-              <Link to="/contact">
+              <Link to="/contact" hash="quote-form">
                 Discuss Your Requirement <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Link>
             </Button>

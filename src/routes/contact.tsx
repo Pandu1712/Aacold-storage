@@ -10,7 +10,7 @@ import {
   CheckCircle2,
   Sparkles,
 } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -77,6 +77,25 @@ function ContactPage() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    // Scroll to the quote form if requested via hash, query item, or on mobile
+    const scrollToForm = () => {
+      const el = document.getElementById("quote-form-section") || document.getElementById("contact-quote-form");
+      if (el) {
+        const isMobile = window.innerWidth < 1024;
+        const hasQuoteIntent = window.location.hash.includes("quote") || Boolean(search?.item);
+        if (hasQuoteIntent || (isMobile && window.location.hash === "#quote-form")) {
+          const yOffset = -80;
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      }
+    };
+
+    const timer = setTimeout(scrollToForm, 180);
+    return () => clearTimeout(timer);
+  }, [search]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -245,7 +264,7 @@ function ContactPage() {
 
           {/* Right: Request Quote Form (Slide from Right) */}
           <ScrollReveal direction="right" duration={700} className="w-full min-w-0 flex flex-col justify-between">
-            <div className="rounded-2xl sm:rounded-3xl border border-[#D8E7F5] bg-white p-4 sm:p-6 md:p-7 shadow-card-hover w-full min-w-0 h-full flex flex-col justify-between">
+            <div id="quote-form-section" className="scroll-mt-24 rounded-2xl sm:rounded-3xl border border-[#D8E7F5] bg-white p-4 sm:p-6 md:p-7 shadow-card-hover w-full min-w-0 h-full flex flex-col justify-between">
               <h2 className="font-display text-xl font-bold text-[#002E7D]">
                 Request a Customized Quotation
               </h2>

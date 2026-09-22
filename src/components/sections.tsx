@@ -134,7 +134,7 @@ export function ProductCard({
               size="sm"
               className="rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-2.5 py-1.5 text-xs font-semibold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
             >
-              <Link to="/contact">Get Quote</Link>
+              <Link to="/contact" search={{ item: product.name }} hash="quote-form">Get Quote</Link>
             </Button>
             <Button
               asChild
@@ -201,7 +201,7 @@ export function ServiceCard({
             size="sm"
             className="w-full rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] text-xs font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
           >
-            <Link to="/contact">GET IN TOUCH</Link>
+            <Link to="/contact" search={{ item: service.name }} hash="quote-form">GET IN TOUCH</Link>
           </Button>
         </div>
       </article>
@@ -275,7 +275,7 @@ export function CtaBand() {
                 size="default"
                 className="flex-1 sm:flex-initial justify-center rounded-xl bg-white px-3.5 sm:px-6 py-2.5 font-display text-xs sm:text-sm font-bold text-[#002E7D] shadow-xl transition-all duration-300 hover:bg-[#F5F9FC] hover:scale-105 active:scale-95 whitespace-nowrap"
               >
-                <Link to="/contact" className="flex items-center justify-center gap-1.5">
+                <Link to="/contact" hash="quote-form" className="flex items-center justify-center gap-1.5">
                   <span>Get Quote</span>
                   <ArrowRight className="h-3.5 w-3.5 shrink-0" />
                 </Link>
