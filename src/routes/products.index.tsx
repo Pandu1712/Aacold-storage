@@ -64,10 +64,10 @@ function ProductsPage() {
               <Sparkles className="h-3 w-3 text-[#4FC7FF]" />
               AACS Product Catalogue
             </span>
-            <h1 className="mt-2.5 max-w-4xl lg:max-w-5xl font-display text-3xl font-extrabold text-white md:text-4xl lg:text-5xl tracking-tight">
+            <h1 className="mt-2.5 w-full max-w-6xl font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] xl:text-[2.85rem] font-extrabold text-white tracking-tight sm:whitespace-nowrap">
               Commercial &amp; Industrial Cold Storage Systems
             </h1>
-            <p className="mt-2 max-w-3xl lg:max-w-4xl text-xs sm:text-sm leading-relaxed text-[#D8E7F5]">
+            <p className="mt-2 w-full max-w-5xl text-xs sm:text-sm md:text-base leading-relaxed text-[#D8E7F5]">
               Explore our complete range of cold storage rooms, ripening chambers,
               walk-in chillers, blast freezers, and insulated panel systems. Share your capacity and dimensions for a customized quotation.
             </p>

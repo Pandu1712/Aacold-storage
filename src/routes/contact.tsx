@@ -117,10 +117,10 @@ function ContactPage() {
               <Sparkles className="h-3.5 w-3.5 text-[#4FC7FF]" />
               Direct Consultation &amp; Quotes
             </span>
-            <h1 className="mt-2.5 max-w-4xl lg:max-w-5xl font-display text-3xl font-extrabold text-white md:text-4xl lg:text-5xl tracking-tight">
+            <h1 className="mt-2.5 w-full max-w-6xl font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] xl:text-[2.85rem] font-extrabold text-white tracking-tight sm:whitespace-nowrap">
               Contact AACS — Request a Quote
             </h1>
-            <p className="mt-3 max-w-3xl lg:max-w-4xl text-sm leading-relaxed text-[#D8E7F5] md:text-base">
+            <p className="mt-3 w-full max-w-5xl text-sm leading-relaxed text-[#D8E7F5] md:text-base">
               Share your storage capacity, product category, and site location. Our engineers will prepare a detailed commercial and technical quotation.
             </p>
           </ScrollReveal>

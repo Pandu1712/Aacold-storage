@@ -54,10 +54,10 @@ function SolutionsPage() {
               <Sparkles className="h-3 w-3 text-[#4FC7FF]" />
               Turnkey Industry Solutions
             </span>
-            <h1 className="mt-2.5 max-w-4xl lg:max-w-5xl font-display text-3xl font-extrabold text-white md:text-4xl lg:text-5xl tracking-tight">
+            <h1 className="mt-2.5 w-full max-w-6xl font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] xl:text-[2.85rem] font-extrabold text-white tracking-tight sm:whitespace-nowrap">
               Tailored Cooling for Critical Industries
             </h1>
-            <p className="mt-2 max-w-3xl lg:max-w-4xl text-xs sm:text-sm leading-relaxed text-[#D8E7F5]">
+            <p className="mt-2 w-full max-w-5xl text-xs sm:text-sm md:text-base leading-relaxed text-[#D8E7F5]">
               From precision post-harvest fruit ripening to -40°C blast freezing and sterile cleanrooms, AACS delivers customized thermal systems.
             </p>
           </ScrollReveal>
