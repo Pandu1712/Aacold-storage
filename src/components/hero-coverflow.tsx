@@ -258,9 +258,9 @@ export function HeroCoverflow() {
                 <span className="h-[2px] w-10 bg-[#0AA8F5]" />
               </div>
 
-              {/* Main Headline (2 Lines, Reduced Font) */}
+              {/* Main Headline */}
               <h1 className="mt-2.5 font-display text-xl sm:text-2xl md:text-3xl lg:text-[2.1rem] xl:text-[2.35rem] font-black leading-[1.2] text-[#002E7D] tracking-tight">
-                Complete <span className="text-[#0AA8F5]">Cold Storage</span> &amp; <br className="hidden sm:inline" />Refrigeration Solutions
+                Complete <span className="text-[#0AA8F5]">Cold Storage</span> &amp; Refrigeration Solutions
               </h1>
 
               {/* Action Buttons: GET A QUOTE & WHATSAPP US (Side by Side, 100% Balanced on Mobile) */}

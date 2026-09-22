@@ -139,9 +139,8 @@ function HomePage() {
               <Sparkles className="h-3.5 w-3.5 shrink-0" />
               <span className="whitespace-nowrap">Turnkey Services &amp; AMC</span>
             </span>
-            <h2 className="mt-2 font-display text-2xl sm:text-3xl font-black text-[#002E7D] tracking-tight leading-tight">
-              Refrigeration Services &amp; <br className="hidden sm:inline" />
-              <span className="text-[#0AA8F5]">AMC Maintenance</span>
+            <h2 className="mt-2 font-display text-2xl sm:text-3xl font-black text-[#002E7D] tracking-tight leading-tight sm:whitespace-nowrap">
+              Refrigeration Services &amp; <span className="text-[#0AA8F5]">AMC Maintenance</span>
             </h2>
             <p className="mt-1 max-w-xl text-xs sm:text-sm text-[#5C728A]">
               From precision panel installation to emergency troubleshooting and comprehensive AMC contracts.
@@ -236,8 +235,7 @@ function HomePage() {
             eyebrow="Engineered Products & Pricing"
             title={
               <>
-                Cold Storage Rooms, <br className="hidden sm:inline" />
-                <span className="text-[#0AA8F5]">Chillers &amp; Panels</span>
+                Cold Storage Rooms, <span className="text-[#0AA8F5]">Chillers &amp; Panels</span>
               </>
             }
             copy="Select any product to view exact starting prices, technical specifications, and custom configuration options."
@@ -284,8 +282,7 @@ function HomePage() {
             eyebrow="Industries We Serve"
             title={
               <>
-                Cooling Solutions Across <br className="hidden sm:inline" />
-                <span className="text-[#4FC7FF]">Critical Sectors</span>
+                Cooling Solutions Across <span className="text-[#4FC7FF]">Critical Sectors</span>
               </>
             }
             copy="Custom-designed refrigeration systems engineered for precise temperature control and rigorous industrial demands."
@@ -360,8 +357,7 @@ function HomePage() {
               eyebrow="Why Choose AACS"
               title={
                 <>
-                  A Dependable Partner for <br className="hidden sm:inline" />
-                  <span className="text-[#0AA8F5]">Cold Storage &amp; Refrigeration</span>
+                  A Dependable Partner for <span className="text-[#0AA8F5]">Cold Storage &amp; Refrigeration</span>
                 </>
               }
               copy="From site layout planning to commissioning and maintenance, we combine technical rigor with transparent service."
