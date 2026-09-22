@@ -14,7 +14,7 @@ import { useState, useEffect, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { CtaBand, SectionHeading } from "@/components/sections";
+import { SectionHeading } from "@/components/sections";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { company, products } from "@/lib/site-data";
 import { WhatsAppBrandIcon } from "@/components/whatsapp-icon";
@@ -469,8 +469,6 @@ function ContactPage() {
         </div>
       </section>
 
-      {/* 3. Global CTA Band */}
-      <CtaBand />
     </>
   );
 }
