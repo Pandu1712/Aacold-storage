@@ -219,45 +219,26 @@ function ContactPage() {
                 </div>
               </div>
 
-              {/* Quick Action & Dispatch Panel in Left White Space */}
-              <div className="rounded-2xl sm:rounded-3xl border border-[#0AA8F5]/30 bg-gradient-to-br from-[#F5F9FC] via-[#EDF6FD] to-[#E5F3FC] p-4 sm:p-5 shadow-card w-full min-w-0 mt-2">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#0050A7]/10 px-2.5 py-1 text-[0.7rem] font-bold text-[#0050A7]">
-                    <Sparkles className="h-3.5 w-3.5 text-[#0AA8F5]" /> Direct Quotation Dispatch
-                  </span>
-                  <span className="text-[0.72rem] font-bold text-[#008938] flex items-center gap-1">
-                    <span className="h-2 w-2 rounded-full bg-[#008938] animate-pulse" /> Avg &lt; 15 mins
-                  </span>
-                </div>
+              {/* Action Buttons in Left Space */}
+              <div className="flex flex-col sm:flex-row gap-3 pt-2 w-full min-w-0">
+                <Button
+                  type="submit"
+                  form="contact-quote-form"
+                  size="lg"
+                  className="flex-1 rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-5 py-3.5 font-display text-xs sm:text-sm font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
+                >
+                  <Send className="mr-2 h-4 w-4" /> Submit Quote Request
+                </Button>
 
-                <h3 className="mt-2.5 font-display text-sm sm:text-base font-bold text-[#002E7D]">
-                  Ready to Submit Your Cold Storage Project?
-                </h3>
-                <p className="mt-1 text-xs leading-relaxed text-[#5C728A]">
-                  Click below to submit your requirements directly or connect with our lead refrigeration engineer on WhatsApp.
-                </p>
-
-                {/* Left Side Action Buttons */}
-                <div className="mt-3.5 flex flex-col sm:flex-row gap-2.5">
-                  <Button
-                    type="submit"
-                    form="contact-quote-form"
-                    size="lg"
-                    className="flex-1 rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-4 py-3 font-display text-xs font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
-                  >
-                    <Send className="mr-2 h-4 w-4" /> Submit Quote Request
-                  </Button>
-
-                  <Button
-                    type="button"
-                    size="lg"
-                    variant="outline"
-                    onClick={handleWhatsAppQuote}
-                    className="flex-1 rounded-xl border border-[#25D366]/40 bg-white px-4 py-3 font-display text-xs font-bold text-[#008938] hover:bg-[#F0FDF4] active:scale-95 transition-all duration-200"
-                  >
-                    <WhatsAppBrandIcon className="mr-2 h-4 w-4" /> Send via WhatsApp
-                  </Button>
-                </div>
+                <Button
+                  type="button"
+                  size="lg"
+                  variant="outline"
+                  onClick={handleWhatsAppQuote}
+                  className="flex-1 rounded-xl border border-[#D8E7F5] bg-[#F5F9FC] px-5 py-3.5 font-display text-xs sm:text-sm font-bold text-[#008938] hover:bg-white active:scale-95 transition-all duration-200"
+                >
+                  <WhatsAppBrandIcon className="mr-2 h-4 w-4" /> Send via WhatsApp
+                </Button>
               </div>
             </div>
           </ScrollReveal>
@@ -461,27 +442,6 @@ function ContactPage() {
                       placeholder="Provide additional details regarding commodity, door type, civil foundation, or required timeline..."
                       className="mt-2 rounded-xl border-[#D8E7F5] text-xs"
                     />
-                  </div>
-
-                  {/* Dual Action Buttons */}
-                  <div className="flex flex-wrap items-center justify-start gap-3 pt-3">
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-6 font-display text-xs font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
-                    >
-                      <Send className="mr-2 h-4 w-4" /> Submit Quote Request
-                    </Button>
-
-                    <Button
-                      type="button"
-                      size="lg"
-                      variant="outline"
-                      onClick={handleWhatsAppQuote}
-                      className="rounded-xl border-[#D8E7F5] bg-[#F5F9FC] px-6 font-display text-xs font-bold text-[#008938] hover:bg-white active:scale-95 transition-all duration-200"
-                    >
-                      <WhatsAppBrandIcon className="mr-2 h-4 w-4" /> Send via WhatsApp
-                    </Button>
                   </div>
                 </form>
               )}
