@@ -136,11 +136,11 @@ function ContactPage() {
           center
         />
 
-        <div className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] min-w-0">
+        <div className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] min-w-0 items-stretch">
           {/* Left: Contact Information Cards (Slide from Left) */}
-          <ScrollReveal direction="left" duration={700} className="w-full min-w-0">
+          <ScrollReveal direction="left" duration={700} className="w-full min-w-0 flex flex-col justify-between">
             {/* Contact Detail Cards */}
-            <div className="space-y-3 w-full min-w-0">
+            <div className="space-y-3 w-full min-w-0 flex-1 flex flex-col justify-between">
               {/* Phone & WhatsApp */}
               <div className="flex items-start gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl border border-[#D8E7F5] bg-white p-4 sm:p-5 shadow-card w-full min-w-0">
                 <span className="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-brand">
@@ -218,12 +218,53 @@ function ContactPage() {
                   </strong>
                 </div>
               </div>
+
+              {/* Quick Action & Dispatch Panel in Left White Space */}
+              <div className="rounded-2xl sm:rounded-3xl border border-[#0AA8F5]/30 bg-gradient-to-br from-[#F5F9FC] via-[#EDF6FD] to-[#E5F3FC] p-4 sm:p-5 shadow-card w-full min-w-0 mt-2">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#0050A7]/10 px-2.5 py-1 text-[0.7rem] font-bold text-[#0050A7]">
+                    <Sparkles className="h-3.5 w-3.5 text-[#0AA8F5]" /> Direct Quotation Dispatch
+                  </span>
+                  <span className="text-[0.72rem] font-bold text-[#008938] flex items-center gap-1">
+                    <span className="h-2 w-2 rounded-full bg-[#008938] animate-pulse" /> Avg &lt; 15 mins
+                  </span>
+                </div>
+
+                <h3 className="mt-2.5 font-display text-sm sm:text-base font-bold text-[#002E7D]">
+                  Ready to Submit Your Cold Storage Project?
+                </h3>
+                <p className="mt-1 text-xs leading-relaxed text-[#5C728A]">
+                  Click below to submit your requirements directly or connect with our lead refrigeration engineer on WhatsApp.
+                </p>
+
+                {/* Left Side Action Buttons */}
+                <div className="mt-3.5 flex flex-col sm:flex-row gap-2.5">
+                  <Button
+                    type="submit"
+                    form="contact-quote-form"
+                    size="lg"
+                    className="flex-1 rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-4 py-3 font-display text-xs font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
+                  >
+                    <Send className="mr-2 h-4 w-4" /> Submit Quote Request
+                  </Button>
+
+                  <Button
+                    type="button"
+                    size="lg"
+                    variant="outline"
+                    onClick={handleWhatsAppQuote}
+                    className="flex-1 rounded-xl border border-[#25D366]/40 bg-white px-4 py-3 font-display text-xs font-bold text-[#008938] hover:bg-[#F0FDF4] active:scale-95 transition-all duration-200"
+                  >
+                    <WhatsAppBrandIcon className="mr-2 h-4 w-4" /> Send via WhatsApp
+                  </Button>
+                </div>
+              </div>
             </div>
           </ScrollReveal>
 
           {/* Right: Request Quote Form (Slide from Right) */}
-          <ScrollReveal direction="right" duration={700} className="w-full min-w-0">
-            <div className="rounded-2xl sm:rounded-3xl border border-[#D8E7F5] bg-white p-4 sm:p-6 md:p-7 shadow-card-hover w-full min-w-0">
+          <ScrollReveal direction="right" duration={700} className="w-full min-w-0 flex flex-col justify-between">
+            <div className="rounded-2xl sm:rounded-3xl border border-[#D8E7F5] bg-white p-4 sm:p-6 md:p-7 shadow-card-hover w-full min-w-0 h-full flex flex-col justify-between">
               <h2 className="font-display text-xl font-bold text-[#002E7D]">
                 Request a Customized Quotation
               </h2>
@@ -249,7 +290,7 @@ function ContactPage() {
                   </Button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="mt-4 space-y-3.5">
+                <form id="contact-quote-form" onSubmit={handleSubmit} className="mt-4 space-y-3.5">
                   {/* Name & Mobile Number */}
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
