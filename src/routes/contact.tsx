@@ -129,17 +129,18 @@ function ContactPage() {
 
       {/* 2. Split Layout: Details & Request Form */}
       <section className="site-container py-6 lg:py-8 overflow-hidden">
-        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <SectionHeading
+          eyebrow="Get In Touch"
+          title="Speak With Our Refrigeration Specialists"
+          copy="We respond promptly to commercial inquiries and emergency maintenance requests."
+          center
+        />
+
+        <div className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Left: Contact Information Cards (Slide from Left) */}
           <ScrollReveal direction="left" duration={700}>
-            <SectionHeading
-              eyebrow="Get In Touch"
-              title="Speak With Our Refrigeration Specialists"
-              copy="We respond promptly to commercial inquiries and emergency maintenance requests."
-            />
-
             {/* Contact Detail Cards */}
-            <div className="mt-5 space-y-3">
+            <div className="space-y-3">
               {/* Phone & WhatsApp */}
               <div className="flex items-start gap-4 rounded-3xl border border-[#D8E7F5] bg-white p-5 shadow-card">
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-brand">
