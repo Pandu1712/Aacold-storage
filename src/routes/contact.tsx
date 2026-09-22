@@ -136,84 +136,84 @@ function ContactPage() {
           center
         />
 
-        <div className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] min-w-0">
           {/* Left: Contact Information Cards (Slide from Left) */}
-          <ScrollReveal direction="left" duration={700}>
+          <ScrollReveal direction="left" duration={700} className="w-full min-w-0">
             {/* Contact Detail Cards */}
-            <div className="space-y-3">
+            <div className="space-y-3 w-full min-w-0">
               {/* Phone & WhatsApp */}
-              <div className="flex items-start gap-4 rounded-3xl border border-[#D8E7F5] bg-white p-5 shadow-card">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-brand">
-                  <Phone className="h-6 w-6" />
+              <div className="flex items-start gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl border border-[#D8E7F5] bg-white p-4 sm:p-5 shadow-card w-full min-w-0">
+                <span className="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-brand">
+                  <Phone className="h-5 w-5 sm:h-6 sm:w-6" />
                 </span>
-                <div>
-                  <h3 className="font-display text-base font-bold text-[#002E7D]">
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-display text-sm sm:text-base font-bold text-[#002E7D]">
                     Direct Phone &amp; WhatsApp
                   </h3>
                   <a
                     href={`tel:+91${company.phone}`}
-                    className="mt-1 block font-display text-lg font-extrabold text-[#0050A7] hover:text-[#0AA8F5]"
+                    className="mt-1 block font-display text-base sm:text-lg font-extrabold text-[#0050A7] hover:text-[#0AA8F5]"
                   >
                     +91 {company.phone}
                   </a>
-                  <span className="text-xs text-[#5C728A]">
+                  <span className="text-xs text-[#5C728A] block break-words">
                     Available for phone consultations &amp; WhatsApp drawings
                   </span>
                 </div>
               </div>
 
               {/* Email */}
-              <div className="flex items-start gap-4 rounded-3xl border border-[#D8E7F5] bg-white p-6 shadow-card">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#002E7D] to-[#0050A7] text-white shadow-brand">
-                  <Mail className="h-6 w-6" />
+              <div className="flex items-start gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl border border-[#D8E7F5] bg-white p-4 sm:p-5 shadow-card w-full min-w-0">
+                <span className="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#002E7D] to-[#0050A7] text-white shadow-brand">
+                  <Mail className="h-5 w-5 sm:h-6 sm:w-6" />
                 </span>
-                <div>
-                  <h3 className="font-display text-base font-bold text-[#002E7D]">
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-display text-sm sm:text-base font-bold text-[#002E7D]">
                     Official Email
                   </h3>
                   <a
                     href={`mailto:${company.email}`}
-                    className="mt-1 block font-medium text-[#0050A7] hover:underline text-sm"
+                    className="mt-1 block font-medium text-[#0050A7] hover:underline text-xs sm:text-sm break-all"
                   >
                     {company.email}
                   </a>
-                  <span className="text-xs text-[#5C728A]">
+                  <span className="text-xs text-[#5C728A] block break-words">
                     Send RFQs, blueprints, and tender documentation
                   </span>
                 </div>
               </div>
 
               {/* Office Address */}
-              <div className="flex items-start gap-4 rounded-3xl border border-[#D8E7F5] bg-white p-6 shadow-card">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-brand">
-                  <MapPin className="h-6 w-6" />
+              <div className="flex items-start gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl border border-[#D8E7F5] bg-white p-4 sm:p-5 shadow-card w-full min-w-0">
+                <span className="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#0050A7] to-[#0AA8F5] text-white shadow-brand">
+                  <MapPin className="h-5 w-5 sm:h-6 sm:w-6" />
                 </span>
-                <div>
-                  <h3 className="font-display text-base font-bold text-[#002E7D]">
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-display text-sm sm:text-base font-bold text-[#002E7D]">
                     Registered Office Address
                   </h3>
-                  <p className="mt-1 text-xs leading-relaxed text-[#1A2B3C]">
+                  <p className="mt-1 text-xs leading-relaxed text-[#1A2B3C] break-words">
                     {company.address}
                   </p>
                 </div>
               </div>
 
               {/* Business Hours & GSTIN */}
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-2xl border border-[#D8E7F5] bg-[#F5F9FC] p-5">
+              <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 w-full min-w-0">
+                <div className="rounded-2xl border border-[#D8E7F5] bg-[#F5F9FC] p-4 sm:p-5 min-w-0">
                   <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0050A7]">
-                    <Clock className="h-4 w-4" /> Business Hours
+                    <Clock className="h-4 w-4 shrink-0" /> Business Hours
                   </div>
-                  <strong className="mt-1.5 block font-display text-xs font-bold text-[#002E7D]">
+                  <strong className="mt-1.5 block font-display text-xs font-bold text-[#002E7D] break-words">
                     {company.businessHours}
                   </strong>
                 </div>
 
-                <div className="rounded-2xl border border-[#D8E7F5] bg-[#F5F9FC] p-5">
+                <div className="rounded-2xl border border-[#D8E7F5] bg-[#F5F9FC] p-4 sm:p-5 min-w-0">
                   <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0050A7]">
-                    <ShieldCheck className="h-4 w-4" /> GSTIN Verified
+                    <ShieldCheck className="h-4 w-4 shrink-0" /> GSTIN Verified
                   </div>
-                  <strong className="mt-1.5 block font-display text-xs font-bold text-[#002E7D]">
+                  <strong className="mt-1.5 block font-display text-xs font-bold text-[#002E7D] break-all">
                     {company.gstin}
                   </strong>
                 </div>
@@ -222,8 +222,8 @@ function ContactPage() {
           </ScrollReveal>
 
           {/* Right: Request Quote Form (Slide from Right) */}
-          <ScrollReveal direction="right" duration={700}>
-            <div className="rounded-3xl border border-[#D8E7F5] bg-white p-6 md:p-7 shadow-card-hover">
+          <ScrollReveal direction="right" duration={700} className="w-full min-w-0">
+            <div className="rounded-2xl sm:rounded-3xl border border-[#D8E7F5] bg-white p-4 sm:p-6 md:p-7 shadow-card-hover w-full min-w-0">
               <h2 className="font-display text-xl font-bold text-[#002E7D]">
                 Request a Customized Quotation
               </h2>
