@@ -423,11 +423,11 @@ function ContactPage() {
                   </div>
 
                   {/* Dual Action Buttons */}
-                  <div className="grid gap-3 pt-3 sm:grid-cols-2">
+                  <div className="flex flex-wrap items-center justify-start gap-3 pt-3">
                     <Button
                       type="submit"
                       size="lg"
-                      className="rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] font-display text-xs font-bold text-white shadow-brand hover:opacity-95"
+                      className="rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-6 font-display text-xs font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
                     >
                       <Send className="mr-2 h-4 w-4" /> Submit Quote Request
                     </Button>
@@ -437,7 +437,7 @@ function ContactPage() {
                       size="lg"
                       variant="outline"
                       onClick={handleWhatsAppQuote}
-                      className="rounded-xl border-[#D8E7F5] bg-[#F5F9FC] font-display text-xs font-bold text-[#008938] hover:bg-white"
+                      className="rounded-xl border-[#D8E7F5] bg-[#F5F9FC] px-6 font-display text-xs font-bold text-[#008938] hover:bg-white active:scale-95 transition-all duration-200"
                     >
                       <WhatsAppBrandIcon className="mr-2 h-4 w-4" /> Send via WhatsApp
                     </Button>
