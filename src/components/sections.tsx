@@ -132,9 +132,11 @@ export function ProductCard({
             <Button
               asChild
               size="sm"
-              className="rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-2.5 py-1.5 text-xs font-semibold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
+              className="rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-2.5 py-1.5 text-[0.72rem] font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
             >
-              <Link to="/contact" search={{ item: product.name }} hash="quote-form">Get Quote</Link>
+              <Link to="/contact" search={{ item: product.name }} hash="quote-form">
+                Request Custom Quote
+              </Link>
             </Button>
             <Button
               asChild

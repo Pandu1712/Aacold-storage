@@ -30,6 +30,7 @@ import walkInChiller from "@/assets/walk-in-chiller.jpg";
 import blastFreezer from "@/assets/blast-freezer.jpg";
 import walkInFreezer from "@/assets/walk-in-freezer.jpg";
 import pufPanels from "@/assets/puf-panels.jpg";
+import dairyColdStorage from "@/assets/dairy-cold-storage.jpg";
 
 interface CoverflowProduct {
   id: string;
@@ -108,8 +109,8 @@ const heroSlides = [
     category: "Cold Storage Rooms",
     mainImage: coldRoomHero,
     floatingTopImage: industryProduce,
-    floatingTopBadge: { temp: "-18°C", label: "TEMPERATURE CONTROLLED" },
-    floatingBottomImage: frozenBerries,
+    floatingTopBadge: { temp: "+2°C to +8°C", label: "CHILLED STORAGE" },
+    floatingBottomImage: dairyColdStorage,
     tagline: "Preserve Today For a Better Tomorrow",
   },
   {
@@ -223,7 +224,7 @@ export function HeroCoverflow() {
 
   return (
     <section
-      className="relative overflow-hidden bg-gradient-to-r from-[#EBF5FC] via-[#F4F9FE] to-[#FFFFFF] pt-6 pb-6 lg:pt-8 lg:pb-0 text-[#1E293B]"
+      className="relative overflow-hidden bg-gradient-to-r from-[#EBF5FC] via-[#F4F9FE] to-[#FFFFFF] pt-1.5 sm:pt-2 lg:pt-2.5 pb-4 lg:pb-0 text-[#1E293B]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -246,16 +247,21 @@ export function HeroCoverflow() {
       />
 
       <div className="site-container relative z-10">
-        <div className="grid items-center gap-5 lg:grid-cols-12 lg:gap-4">
+        <div className="grid items-center gap-4 lg:grid-cols-12 lg:gap-4">
           {/* ================= LEFT COLUMN: HERO HEADLINE & BUTTONS (DESKTOP GETS ICONS AS WELL) ================= */}
-          <div className="lg:col-span-5 xl:col-span-5 pb-1 lg:pb-8">
+          <div className="lg:col-span-5 xl:col-span-5 pb-1 lg:pb-2">
             <div className="animate-fade-up">
               {/* Eyebrow Line */}
-              <div className="flex items-center gap-2.5">
-                <span className="font-display text-[0.72rem] sm:text-xs font-black uppercase tracking-[0.22em] text-[#0050A7]">
-                  KEEPING YOUR BUSINESS FRESH
-                </span>
-                <span className="h-[2px] w-10 bg-[#0AA8F5]" />
+              <div>
+                <div className="flex items-center gap-2.5">
+                  <span className="font-display text-[0.72rem] sm:text-xs font-black uppercase tracking-[0.22em] text-[#0050A7]">
+                    KEEPING YOUR BUSINESS FRESH
+                  </span>
+                  <span className="h-[2px] w-10 bg-[#0AA8F5]" />
+                </div>
+                <p className="mt-1 text-[0.68rem] sm:text-xs font-semibold text-[#0AA8F5] tracking-wide">
+                  Engineered for Your Temperature. Built for Your Business
+                </p>
               </div>
 
               {/* Main Headline */}
@@ -358,7 +364,7 @@ export function HeroCoverflow() {
                   ))}
 
                   {/* Top Edge Soft Mist Overlay */}
-                  <div className="absolute inset-x-0 top-0 h-14 sm:h-24 bg-gradient-to-b from-[#F4F9FE] via-[#F4F9FE]/60 to-transparent pointer-events-none z-20" />
+                  <div className="absolute inset-x-0 top-0 h-3 sm:h-5 bg-gradient-to-b from-[#F4F9FE]/60 to-transparent pointer-events-none z-20" />
 
                   {/* Left Edge Soft Mist Overlay */}
                   <div className="absolute inset-y-0 left-0 w-24 sm:w-44 bg-gradient-to-r from-[#F4F9FE] via-[#F4F9FE]/50 to-transparent pointer-events-none z-20" />

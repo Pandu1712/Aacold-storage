@@ -13,18 +13,19 @@ import {
 import { useState, useEffect, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { SectionHeading } from "@/components/sections";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { company, products } from "@/lib/site-data";
 import { WhatsAppBrandIcon } from "@/components/whatsapp-icon";
 
 const enquiryOptions = [
-  "General Inquiry",
   ...products.map((p) => p.name),
   "PUF Panel Installation (₹250/sq.ft)",
+  "PUF Panel Uninstallation (₹300/sq.ft)",
   "Refrigeration AMC Package",
-  "Custom Cold Room Engineering",
+  "Cold Storage Repair & Gas Charging",
+  "Split AC Installation & Servicing",
+  "Custom Cold Room Engineering / Other Application",
 ];
 
 export const Route = createFileRoute("/contact")({
@@ -65,15 +66,9 @@ function ContactPage() {
 
   const [formData, setFormData] = useState({
     name: "",
-    mobile: "",
-    email: "",
-    companyName: "",
-    item: search?.item ?? enquiryOptions[0],
-    temperature: "",
-    capacity: "",
-    dimensions: "",
+    phone: "",
     location: "Bengaluru",
-    message: "",
+    productApplication: search?.item ?? enquiryOptions[0],
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -99,25 +94,20 @@ function ContactPage() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.mobile) {
-      alert("Please enter your name and mobile number.");
+    if (!formData.name || !formData.phone) {
+      alert("Please enter your name and phone number.");
       return;
     }
     setSubmitted(true);
   };
 
   const handleWhatsAppQuote = () => {
-    const text = `*New AACS Quote Request*\n\n` +
+    const text =
+      `*New AACS Technical Quote Request*\n\n` +
       `*Name:* ${formData.name || "Not specified"}\n` +
-      `*Mobile:* ${formData.mobile || "Not specified"}\n` +
-      `*Email:* ${formData.email || "Not specified"}\n` +
-      `*Company:* ${formData.companyName || "Not specified"}\n` +
-      `*Product/Service:* ${formData.item}\n` +
-      `*Target Temperature:* ${formData.temperature || "To be discussed"}\n` +
-      `*Capacity:* ${formData.capacity || "To be discussed"}\n` +
-      `*Dimensions:* ${formData.dimensions || "To be discussed"}\n` +
+      `*Phone:* ${formData.phone || "Not specified"}\n` +
       `*Location:* ${formData.location || "Bengaluru"}\n` +
-      `*Message:* ${formData.message || "Please provide quotation."}`;
+      `*Product/Application:* ${formData.productApplication}`;
 
     const url = `https://wa.me/91${company.whatsapp}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
@@ -140,7 +130,7 @@ function ContactPage() {
               Contact AACS — Request a Quote
             </h1>
             <p className="mt-3 w-full max-w-5xl text-sm leading-relaxed text-[#D8E7F5] md:text-base">
-              Share your storage capacity, product category, and site location. Our engineers will prepare a detailed commercial and technical quotation.
+              Share your product or application requirements and site location. Our engineers will prepare a detailed commercial and technical quotation.
             </p>
           </ScrollReveal>
         </div>
@@ -244,9 +234,9 @@ function ContactPage() {
                   type="submit"
                   form="contact-quote-form"
                   size="lg"
-                  className="flex-1 rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-5 py-3.5 font-display text-xs sm:text-sm font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
+                  className="flex-1 rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-5 py-3.5 font-display text-xs sm:text-sm font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200 cursor-pointer"
                 >
-                  <Send className="mr-2 h-4 w-4" /> Submit Quote Request
+                  <Send className="mr-2 h-4 w-4" /> Request Technical Quote
                 </Button>
 
                 <Button
@@ -254,7 +244,7 @@ function ContactPage() {
                   size="lg"
                   variant="outline"
                   onClick={handleWhatsAppQuote}
-                  className="flex-1 rounded-xl border border-[#D8E7F5] bg-[#F5F9FC] px-5 py-3.5 font-display text-xs sm:text-sm font-bold text-[#008938] hover:bg-white active:scale-95 transition-all duration-200"
+                  className="flex-1 rounded-xl border border-[#D8E7F5] bg-[#F5F9FC] px-5 py-3.5 font-display text-xs sm:text-sm font-bold text-[#008938] hover:bg-white active:scale-95 transition-all duration-200 cursor-pointer"
                 >
                   <WhatsAppBrandIcon className="mr-2 h-4 w-4" /> Send via WhatsApp
                 </Button>
@@ -264,25 +254,30 @@ function ContactPage() {
 
           {/* Right: Request Quote Form (Slide from Right) */}
           <ScrollReveal direction="right" duration={700} className="w-full min-w-0 flex flex-col justify-between">
-            <div id="quote-form-section" className="scroll-mt-24 rounded-2xl sm:rounded-3xl border border-[#D8E7F5] bg-white p-4 sm:p-6 md:p-7 shadow-card-hover w-full min-w-0 h-full flex flex-col justify-between">
-              <h2 className="font-display text-xl font-bold text-[#002E7D]">
-                Request a Customized Quotation
-              </h2>
-              <p className="mt-1.5 text-xs leading-relaxed text-[#5C728A]">
-                Fill out the specifications below or send directly via WhatsApp.
-              </p>
+            <div id="quote-form-section" className="scroll-mt-24 rounded-2xl sm:rounded-3xl border border-[#D8E7F5] bg-white p-5 sm:p-7 shadow-card-hover w-full min-w-0 h-full flex flex-col justify-between">
+              <div>
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-[#002E7D]">
+                  Request Technical Quote
+                </h2>
+                <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-[#5C728A]">
+                  Enter your contact details and storage requirements below for a customized quotation.
+                </p>
+              </div>
 
               {submitted ? (
-                <div className="mt-6 rounded-2xl border border-[#00B7FF]/30 bg-[#F5F9FC] p-6 text-center animate-fade-up">
+                <div className="my-auto rounded-2xl border border-[#00B7FF]/30 bg-[#F5F9FC] p-6 text-center animate-fade-up">
                   <CheckCircle2 className="mx-auto h-12 w-12 text-[#008938]" />
                   <h3 className="mt-3 font-display text-lg font-bold text-[#002E7D]">
                     Thank You! Quotation Request Received
                   </h3>
-                  <p className="mt-1.5 text-xs leading-relaxed text-[#5C728A]">
-                    Our refrigeration team has logged your specifications. An engineer will review your project parameters and contact you at <strong>{formData.mobile}</strong> within 4 business hours.
+                  <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#5C728A]">
+                    Our refrigeration engineering team has received your request. We will contact you at <strong>{formData.phone}</strong> with a detailed technical quote within 4 business hours.
                   </p>
                   <Button
-                    onClick={() => setSubmitted(false)}
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormData({ name: "", phone: "", location: "Bengaluru", productApplication: enquiryOptions[0] });
+                    }}
                     variant="outline"
                     className="mt-5 rounded-xl border-[#D8E7F5] text-xs font-semibold text-[#0050A7]"
                   >
@@ -290,145 +285,38 @@ function ContactPage() {
                   </Button>
                 </div>
               ) : (
-                <form id="contact-quote-form" onSubmit={handleSubmit} className="mt-4 space-y-3.5">
-                  {/* Name & Mobile Number */}
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#1A2B3C]">
-                        Name <span className="text-red-500">*</span>
-                      </label>
-                      <Input
-                        required
-                        value={formData.name}
-                        onChange={(e) =>
-                          setFormData({ ...formData, name: e.target.value })
-                        }
-                        placeholder="Your full name"
-                        className="mt-2 h-12 rounded-xl border-[#D8E7F5]"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#1A2B3C]">
-                        Mobile Number <span className="text-red-500">*</span>
-                      </label>
-                      <Input
-                        required
-                        type="tel"
-                        value={formData.mobile}
-                        onChange={(e) =>
-                          setFormData({ ...formData, mobile: e.target.value })
-                        }
-                        placeholder="10-digit mobile number"
-                        className="mt-2 h-12 rounded-xl border-[#D8E7F5]"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Email & Company Name */}
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#1A2B3C]">
-                        Email
-                      </label>
-                      <Input
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
-                        placeholder="name@company.com"
-                        className="mt-2 h-12 rounded-xl border-[#D8E7F5]"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#1A2B3C]">
-                        Company Name
-                      </label>
-                      <Input
-                        value={formData.companyName}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            companyName: e.target.value,
-                          })
-                        }
-                        placeholder="Your organization / firm name"
-                        className="mt-2 h-12 rounded-xl border-[#D8E7F5]"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Product / Service */}
+                <form id="contact-quote-form" onSubmit={handleSubmit} className="mt-6 space-y-4">
+                  {/* Name */}
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#1A2B3C]">
-                      Product / Service <span className="text-red-500">*</span>
+                      Name <span className="text-red-500">*</span>
                     </label>
-                    <select
-                      value={formData.item}
+                    <Input
+                      required
+                      value={formData.name}
                       onChange={(e) =>
-                        setFormData({ ...formData, item: e.target.value })
+                        setFormData({ ...formData, name: e.target.value })
                       }
-                      className="mt-2 w-full h-12 rounded-xl border border-[#D8E7F5] bg-white px-4 text-xs font-semibold text-[#002E7D] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0AA8F5]"
-                    >
-                      {enquiryOptions.map((opt) => (
-                        <option key={opt} value={opt}>
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
+                      placeholder="Your full name"
+                      className="mt-2 h-12 rounded-xl border-[#D8E7F5] text-sm"
+                    />
                   </div>
 
-                  {/* Required Temperature, Required Capacity, Approximate Dimensions */}
-                  <div className="grid gap-4 sm:grid-cols-3">
-                    <div>
-                      <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-[#1A2B3C]">
-                        Required Temperature
-                      </label>
-                      <Input
-                        value={formData.temperature}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            temperature: e.target.value,
-                          })
-                        }
-                        placeholder="e.g. 2°C to 8°C / -18°C"
-                        className="mt-1.5 h-11 rounded-xl border-[#D8E7F5] text-xs"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-[#1A2B3C]">
-                        Required Capacity
-                      </label>
-                      <Input
-                        value={formData.capacity}
-                        onChange={(e) =>
-                          setFormData({ ...formData, capacity: e.target.value })
-                        }
-                        placeholder="e.g. 2 Ton / 5 Ton"
-                        className="mt-1.5 h-11 rounded-xl border-[#D8E7F5] text-xs"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-[#1A2B3C]">
-                        Approximate Dimensions
-                      </label>
-                      <Input
-                        value={formData.dimensions}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            dimensions: e.target.value,
-                          })
-                        }
-                        placeholder="e.g. 10 × 10 × 8 ft"
-                        className="mt-1.5 h-11 rounded-xl border-[#D8E7F5] text-xs"
-                      />
-                    </div>
+                  {/* Phone */}
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#1A2B3C]">
+                      Phone <span className="text-red-500">*</span>
+                    </label>
+                    <Input
+                      required
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) =>
+                        setFormData({ ...formData, phone: e.target.value })
+                      }
+                      placeholder="10-digit phone / mobile number"
+                      className="mt-2 h-12 rounded-xl border-[#D8E7F5] text-sm"
+                    />
                   </div>
 
                   {/* Location */}
@@ -443,24 +331,39 @@ function ContactPage() {
                         setFormData({ ...formData, location: e.target.value })
                       }
                       placeholder="City / Area (e.g. Bengaluru, Karnataka)"
-                      className="mt-2 h-12 rounded-xl border-[#D8E7F5]"
+                      className="mt-2 h-12 rounded-xl border-[#D8E7F5] text-sm"
                     />
                   </div>
 
-                  {/* Message */}
+                  {/* Product/Application */}
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#1A2B3C]">
-                      Message
+                      Product / Application <span className="text-red-500">*</span>
                     </label>
-                    <Textarea
-                      rows={3}
-                      value={formData.message}
+                    <select
+                      value={formData.productApplication}
                       onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
+                        setFormData({ ...formData, productApplication: e.target.value })
                       }
-                      placeholder="Provide additional details regarding commodity, door type, civil foundation, or required timeline..."
-                      className="mt-2 rounded-xl border-[#D8E7F5] text-xs"
-                    />
+                      className="mt-2 w-full h-12 rounded-xl border border-[#D8E7F5] bg-white px-4 text-xs sm:text-sm font-semibold text-[#002E7D] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0AA8F5]"
+                    >
+                      {enquiryOptions.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Form Submit Button */}
+                  <div className="pt-2">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] py-3.5 font-display text-sm font-bold text-white shadow-brand hover:opacity-95 active:scale-[0.99] transition-all duration-200 cursor-pointer"
+                    >
+                      <Send className="mr-2 h-4 w-4" /> Request Technical Quote
+                    </Button>
                   </div>
                 </form>
               )}

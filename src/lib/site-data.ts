@@ -86,8 +86,31 @@ export type Product = {
   temperatureRange?: string;
   capacity?: string;
   featuredOnHome?: boolean;
-  ctaText?: string;
 };
+
+export const productPriceDisclaimer =
+  "Final price depends on room dimensions, temperature requirement, insulation thickness, refrigeration system and site conditions.";
+
+export const productWhatsIncluded = [
+  "PUF insulated panels",
+  "Refrigeration unit",
+  "Evaporator unit",
+  "Condenser unit",
+  "Insulated door",
+  "Temperature controller",
+  "Standard installation",
+  "Testing & commissioning",
+] as const;
+
+export const productWhatsNotIncluded = [
+  "Civil foundation work",
+  "Electrical wiring beyond agreed scope",
+  "Main electrical panel",
+  "Transportation, if applicable",
+  "GST",
+  "Additional copper/refrigerant piping",
+  "Site modifications",
+] as const;
 
 export const products: Product[] = [
   {

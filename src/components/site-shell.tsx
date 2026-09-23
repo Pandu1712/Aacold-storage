@@ -324,7 +324,7 @@ export function SiteFooter() {
               {/* Trust & Quality Badges */}
               <div className="mt-4 flex flex-wrap gap-2 text-[0.7rem] text-[#7DD3FC]">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.06] px-3 py-1 border border-white/10 backdrop-blur-sm">
-                  <CheckCircle2 className="h-3 w-3 text-[#38BDF8]" /> ISO 9001:2015 Standards
+                  <CheckCircle2 className="h-3 w-3 text-[#38BDF8]" /> Certified Components &amp; Quality-Assured Systems
                 </span>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.06] px-3 py-1 border border-white/10 backdrop-blur-sm">
                   <CheckCircle2 className="h-3 w-3 text-[#38BDF8]" /> Cam-Lock Airtight Joint
