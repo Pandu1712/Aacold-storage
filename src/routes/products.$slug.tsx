@@ -117,46 +117,23 @@ function ProductDetailPage() {
           </Link>
 
           <div className="mt-4 grid items-start gap-6 lg:grid-cols-[1fr_1fr]">
-            {/* Product Image Frame (Slide from Left) */}
+            {/* Product Image & Pricing Badges (Slide from Left) */}
             <ScrollReveal direction="left" duration={700}>
-              <div className="relative overflow-hidden rounded-2xl border border-[#D8E7F5] bg-white p-2.5 shadow-card-hover">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  width={1200}
-                  height={900}
-                  className="aspect-[4/3] w-full rounded-xl object-cover"
-                />
-                <span className="absolute left-5 top-5 rounded-full bg-[#002E7D]/95 px-3 py-1 font-display text-[0.7rem] font-bold text-white backdrop-blur shadow-md">
-                  {product.category}
-                </span>
-              </div>
-            </ScrollReveal>
-
-            {/* Product Summary Header (Slide from Right) */}
-            <ScrollReveal direction="right" duration={700}>
               <div>
-                <span className="eyebrow">{product.category}</span>
-                <h1 className="mt-2.5 font-display text-2xl font-extrabold leading-tight text-[#002E7D] sm:text-3xl lg:text-4xl">
-                  {product.name}
-                </h1>
-
-                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#5C728A]">
-                  {product.description}
-                </p>
-
-                {/* Pricing Disclaimer Note */}
-                <div className="mt-3 rounded-xl border border-[#0AA8F5]/30 bg-[#F0F7FD] p-3 text-xs leading-relaxed text-[#002E7D] shadow-xs">
-                  <div className="flex items-start gap-2">
-                    <Info className="h-4 w-4 text-[#0050A7] shrink-0 mt-0.5" />
-                    <p className="font-medium text-[#002E7D] text-[0.78rem] leading-snug">
-                      <strong className="font-bold text-[#0050A7]">Pricing Note: </strong>
-                      {productPriceDisclaimer}
-                    </p>
-                  </div>
+                <div className="relative overflow-hidden rounded-2xl border border-[#D8E7F5] bg-white p-2.5 shadow-card-hover">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    width={1200}
+                    height={900}
+                    className="aspect-[4/3] w-full rounded-xl object-cover"
+                  />
+                  <span className="absolute left-5 top-5 rounded-full bg-[#002E7D]/95 px-3 py-1 font-display text-[0.7rem] font-bold text-white backdrop-blur shadow-md">
+                    {product.category}
+                  </span>
                 </div>
 
-                {/* Price & Badges (Side by Side in Single Row) */}
+                {/* Price & Badges (Side by Side under Image) */}
                 <div className="mt-3.5 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                   <div className="rounded-xl border-2 border-[#0AA8F5]/30 bg-[#F5F9FC] p-3 shadow-sm flex flex-col justify-center">
                     <span className="block text-[0.62rem] uppercase tracking-wider font-bold text-[#5C728A]">
@@ -187,8 +164,33 @@ function ProductDetailPage() {
                     </div>
                   )}
                 </div>
+              </div>
+            </ScrollReveal>
 
-                {/* Quick Enquiry / Custom Quote Form (Immediately Underneath Price) */}
+            {/* Product Summary & Enquiry Form Header (Slide from Right) */}
+            <ScrollReveal direction="right" duration={700}>
+              <div>
+                <span className="eyebrow">{product.category}</span>
+                <h1 className="mt-2.5 font-display text-2xl font-extrabold leading-tight text-[#002E7D] sm:text-3xl lg:text-4xl">
+                  {product.name}
+                </h1>
+
+                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#5C728A]">
+                  {product.description}
+                </p>
+
+                {/* Pricing Disclaimer Note */}
+                <div className="mt-3 rounded-xl border border-[#0AA8F5]/30 bg-[#F0F7FD] p-3 text-xs leading-relaxed text-[#002E7D] shadow-xs">
+                  <div className="flex items-start gap-2">
+                    <Info className="h-4 w-4 text-[#0050A7] shrink-0 mt-0.5" />
+                    <p className="font-medium text-[#002E7D] text-[0.78rem] leading-snug">
+                      <strong className="font-bold text-[#0050A7]">Pricing Note: </strong>
+                      {productPriceDisclaimer}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Quick Enquiry / Custom Quote Form */}
                 <div className="mt-4 rounded-2xl border-2 border-[#0AA8F5]/30 bg-white p-4 sm:p-5 shadow-card-hover">
                   <div className="flex items-center justify-between pb-3 border-b border-[#D8E7F5]">
                     <div className="flex items-center gap-2">
