@@ -253,13 +253,13 @@ export function HeroCoverflow() {
             <div className="animate-fade-up">
               {/* Eyebrow Line */}
               <div>
-                <div className="flex items-center gap-2.5">
-                  <span className="font-display text-[0.72rem] sm:text-xs font-black uppercase tracking-[0.22em] text-[#0050A7]">
+                <div className="flex items-center gap-2">
+                  <span className="font-display text-[0.68rem] sm:text-xs font-black uppercase tracking-[0.14em] sm:tracking-[0.2em] text-[#0050A7] whitespace-nowrap">
                     KEEPING YOUR BUSINESS FRESH
                   </span>
-                  <span className="h-[2px] w-10 bg-[#0AA8F5]" />
+                  <span className="h-[2px] w-6 sm:w-10 bg-[#0AA8F5] shrink-0" />
                 </div>
-                <p className="mt-1 text-[0.68rem] sm:text-xs font-semibold text-[#0AA8F5] tracking-wide">
+                <p className="mt-1 text-[0.62rem] xs:text-[0.68rem] sm:text-[0.74rem] font-semibold text-[#0AA8F5] tracking-normal sm:tracking-wide whitespace-nowrap">
                   Engineered for Your Temperature. Built for Your Business
                 </p>
               </div>
