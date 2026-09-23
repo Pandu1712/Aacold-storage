@@ -128,11 +128,11 @@ export function ProductCard({
           </div>
 
           {/* Action Buttons */}
-          <div className="mt-3.5 grid grid-cols-2 gap-2 pt-auto">
+          <div className="mt-3.5 space-y-1.5 pt-auto">
             <Button
               asChild
               size="sm"
-              className="rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] px-2.5 py-1.5 text-[0.72rem] font-bold text-white shadow-brand hover:opacity-95 active:scale-95 transition-all duration-200"
+              className="w-full rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] py-2 text-xs font-bold text-white shadow-brand hover:opacity-95 active:scale-[0.99] transition-all duration-200 justify-center"
             >
               <Link to="/contact" search={{ item: product.name }} hash="quote-form">
                 Request Custom Quote
@@ -142,7 +142,7 @@ export function ProductCard({
               asChild
               size="sm"
               variant="outline"
-              className="rounded-xl border-[#D8E7F5] bg-[#F5F9FC] px-2.5 py-1.5 text-xs font-semibold text-[#002E7D] hover:border-[#0AA8F5] hover:bg-white active:scale-95 transition-all duration-200 cursor-pointer"
+              className="w-full rounded-xl border-[#D8E7F5] bg-[#F5F9FC] py-1.5 text-xs font-semibold text-[#002E7D] hover:border-[#0AA8F5] hover:bg-white active:scale-[0.99] transition-all duration-200 cursor-pointer justify-center"
             >
               <Link to="/products/$slug" params={{ slug: product.slug }}>
                 View Details <ArrowRight className="ml-1 h-3 w-3" />
