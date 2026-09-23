@@ -133,25 +133,25 @@ function HomePage() {
 
       {/* 3. OUR SERVICES */}
       <section className="site-container py-6 lg:py-8" id="services">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-3 border-b border-[#D8E7F5]">
-          <div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-3 border-b border-[#D8E7F5]">
+          <div className="max-w-2xl">
             <span className="eyebrow">
               <Sparkles className="h-3.5 w-3.5 shrink-0" />
               <span className="whitespace-nowrap">Turnkey Services &amp; AMC</span>
             </span>
-            <h2 className="mt-2 font-display text-2xl sm:text-3xl font-black text-[#002E7D] tracking-tight leading-tight sm:whitespace-nowrap">
+            <h2 className="mt-2 font-display text-2xl sm:text-3xl font-black text-[#002E7D] tracking-tight leading-tight">
               Refrigeration Services &amp; <span className="text-[#0AA8F5]">AMC Maintenance</span>
             </h2>
-            <p className="mt-1 max-w-xl text-xs sm:text-sm text-[#5C728A]">
+            <p className="mt-1 text-xs sm:text-sm text-[#5C728A]">
               From precision panel installation to emergency troubleshooting and comprehensive AMC contracts.
             </p>
           </div>
 
           {/* Quick Jump Pill to Products */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2 shrink-0 self-start md:self-end">
             <a
               href="#featured-products"
-              className="inline-flex items-center gap-1.5 rounded-full border border-[#0AA8F5]/40 bg-[#F0F9FF] px-4 py-2 font-display text-xs font-bold text-[#0050A7] shadow-sm hover:bg-[#0050A7] hover:text-white transition-all duration-300"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#0AA8F5]/40 bg-[#F0F9FF] px-3.5 py-1.5 sm:px-4 sm:py-2 font-display text-xs font-bold text-[#0050A7] shadow-sm hover:bg-[#0050A7] hover:text-white transition-all duration-300 whitespace-nowrap"
             >
               <span>📦 View Products Below</span>
               <ArrowRight className="h-3.5 w-3.5" />
