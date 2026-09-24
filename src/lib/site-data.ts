@@ -24,7 +24,7 @@ export const company = {
   industry: "Cold Storage • Refrigeration • HVAC • Industrial Cooling",
   phone: "8073946255",
   whatsapp: "8073946255",
-  email: "aacoldstorages25@gmail.com",
+  email: "info@aacoldstorages.in",
   address:
     "#15/1B, Vaddarapalya, Kothnur Royal County, 1st Phase, Uttarahalli Hobli, Bengaluru, Karnataka – 560076, India",
   gstin: "29CEVPN3784H1ZK",

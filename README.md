@@ -487,7 +487,7 @@ WhatsApp
 
 Email
 
-[aacoldstorages25@gmail.com](mailto:aacoldstorages25@gmail.com)
+[info@aacoldstorages.in](mailto:info@aacoldstorages.in)
 
 Address
 
