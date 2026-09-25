@@ -313,7 +313,7 @@ Blue themed specification table.
 ### Cold Storage Rooms
 
 * 2 Ton Cold Storage Room
-* 3 Ton Cold Storage Room
+* Cloud Kitchen Cold Room
 * Flower Cold Storage Room
 
 ### Walk-In Chillers

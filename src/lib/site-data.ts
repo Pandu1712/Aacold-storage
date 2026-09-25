@@ -154,8 +154,8 @@ export const products: Product[] = [
     image: coldRoomHero,
   },
   {
-    slug: "3-ton-cold-storage-room",
-    name: "Cold Storage Room — 3 Ton",
+    slug: "cloud-kitchen-cold-room",
+    name: "Cloud Kitchen Cold Room",
     category: "Cold Storage Rooms",
     priceFormatted: "₹3,00,000 / Piece",
     priceValue: 300000,
@@ -165,13 +165,13 @@ export const products: Product[] = [
     featuredOnHome: true,
     ctaText: "GET A QUOTE",
     description:
-      "AACS 3 Ton Cold Storage Rooms provide controlled-temperature storage for commercial and industrial applications. The room configuration and refrigeration system can be customized according to the customer's requirements.",
+      "AACS Cloud Kitchen Cold Rooms provide controlled-temperature storage designed specifically for cloud kitchens, commercial food prep, and quick-service restaurant operations. The room configuration and refrigeration system can be customized according to the customer's requirements.",
     applications: [
-      "Food Processing Units",
-      "Dairy Hubs & Ice Cream Holding",
-      "Supermarkets & Wholesale Depots",
-      "Horticulture & Agri Logistics",
-      "Hospitality & Hotel Stores",
+      "Cloud Kitchens & Ghost Kitchens",
+      "Commercial Food Preparation & QSRs",
+      "Central Bakery & Confectionery",
+      "Multi-Brand Delivery Hubs",
+      "Hospitality & Catering Units",
     ],
     features: [
       "Air cooled high COP condensing system",
