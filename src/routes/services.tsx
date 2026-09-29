@@ -15,28 +15,54 @@ import { CtaBand, SectionHeading } from "@/components/sections";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { services, company } from "@/lib/site-data";
 
+import { generateBreadcrumbs, siteUrl } from "@/lib/seo-schemas";
+
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       {
-        title: "Cold Storage & HVAC Services — AACS AA Cold Storages Bengaluru",
+        title: "Cold Storage Services, PUF Panel Installation & AMC — AA Cold Storages Bengaluru",
       },
       {
         name: "description",
         content:
-          "Professional cold storage servicing, PUF panel installation (₹250/sq.ft), uninstallation (₹300/sq.ft), AMC contracts and Split AC services by AACS.",
+          "Professional cold storage installation, PUF panel installation (₹250/sq.ft), panel dismantling (₹300/sq.ft), refrigeration gas charging, and comprehensive annual maintenance contracts (AMC) in Bengaluru by AA Cold Storages.",
+      },
+      {
+        name: "keywords",
+        content:
+          "PUF panel installation Bengaluru, cold storage AMC Karnataka, cold room repair Bengaluru, panel uninstallation, refrigeration maintenance, HVAC servicing AA Cold Storages",
       },
       {
         property: "og:title",
-        content: "Refrigeration & HVAC Maintenance Services — AACS",
+        content: "Refrigeration & HVAC Maintenance Services — AA Cold Storages Bengaluru",
       },
       {
         property: "og:description",
         content:
-          "Reliable cold room maintenance, PUF panel assembly, leak checks, and customized AMC packages in Bengaluru.",
+          "Reliable cold room maintenance, PUF panel assembly (₹250/sq.ft), leak checks, and customized AMC packages in Bengaluru.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${siteUrl}/services` },
+      { property: "og:image", content: `${siteUrl}/MainLogo.png` },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Cold Storage Services & AMC — AA Cold Storages" },
+      { name: "twitter:description", content: "Expert PUF panel installation, cold room uninstallation and AMC contracts in Bengaluru." },
+      { name: "twitter:image", content: `${siteUrl}/MainLogo.png` },
+    ],
+    links: [
+      { rel: "canonical", href: `${siteUrl}/services` },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          generateBreadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+          ])
+        ),
+      },
     ],
   }),
   component: ServicesPage,

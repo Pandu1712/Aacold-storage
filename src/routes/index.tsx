@@ -40,24 +40,38 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "AA Cold Storages | Complete Cooling Solutions Bengaluru",
+        title: "AA Cold Storages | Complete Cooling Solutions Bengaluru (AACS)",
       },
       {
         name: "description",
         content:
-          "AACS provides customized cold rooms, walk-in chillers, freezer rooms, ripening chambers, blast freezer rooms, insulated panels, HVAC and refrigeration services for commercial and industrial businesses.",
+          "AA Cold Storages (AACS) is Bengaluru's premier manufacturer and contractor for commercial cold rooms (2T-100T+), walk-in chillers (+2°C), walk-in freezers (-18°C), blast freezers (-35°C), fruit ripening chambers, PUF insulated panels (₹250/sq.ft) and AMC support in Karnataka.",
       },
       {
-        property: "og:title",
-        content: "AA Cold Storages — Complete Cooling Solutions",
+        name: "keywords",
+        content:
+          "AA Cold Storages, AA Cold Storage, AA Cold Storage Bengaluru, AACS, cold storage Bengaluru, cold room manufacturers Bengaluru, walk-in chiller price, walk-in freezer room, banana ripening chamber, blast freezer room, PUF insulated panels, refrigeration contractors Karnataka",
       },
+      { property: "og:title", content: "AA Cold Storages | Complete Cooling Solutions Bengaluru" },
       {
         property: "og:description",
         content:
           "Customized industrial and commercial cold storage solutions, PUF panels, ripening chambers, blast freezers and AMC support in Bengaluru, Karnataka.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://aacoldstorages.in/" },
+      { property: "og:image", content: "https://aacoldstorages.in/MainLogo.png" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "AA Cold Storages | Complete Cooling Solutions Bengaluru" },
+      {
+        name: "twitter:description",
+        content:
+          "Customized industrial and commercial cold storage solutions, PUF panels, ripening chambers, blast freezers and AMC support in Bengaluru.",
+      },
+      { name: "twitter:image", content: "https://aacoldstorages.in/MainLogo.png" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://aacoldstorages.in/" },
     ],
   }),
   component: HomePage,

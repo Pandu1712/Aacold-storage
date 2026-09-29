@@ -4,7 +4,6 @@ import {
   ArrowLeft,
   CheckCircle2,
   Phone,
-  MessageCircle,
   ShieldCheck,
   Snowflake,
   Layers,
@@ -13,7 +12,11 @@ import {
   XCircle,
   Info,
   Send,
+  AlertCircle,
+  ExternalLink,
+  RotateCcw,
 } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CtaBand, RelatedProducts, SectionHeading } from "@/components/sections";
@@ -26,6 +29,7 @@ import {
   productWhatsNotIncluded,
 } from "@/lib/site-data";
 import { WhatsAppBrandIcon } from "@/components/whatsapp-icon";
+import { generateBreadcrumbs, generateProductJsonLd, siteUrl } from "@/lib/seo-schemas";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -34,22 +38,54 @@ export const Route = createFileRoute("/products/$slug")({
     return product;
   },
   head: ({ loaderData }) => {
-    const name = loaderData?.name ?? "Product Details";
+    const product = loaderData;
+    const name = product?.name ?? "Product Details";
+    const canonicalUrl = `${siteUrl}/products/${product?.slug ?? ""}`;
     return {
       meta: [
-        { title: `${name} — AACS AA Cold Storages` },
+        { title: `${name} — Price, Specs & Quotation | AA Cold Storages Bengaluru` },
         {
           name: "description",
-          content: `${loaderData?.name}: ${loaderData?.description} Price: ${loaderData?.priceFormatted}. Customized cold storage systems by AACS Bengaluru.`,
+          content: `${name} by AA Cold Storages Bengaluru (${product?.priceFormatted}): ${product?.description} Capacity: ${product?.capacity ?? "Custom"}. Temperature: ${product?.temperatureRange ?? "Controlled"}. Contact +91 8073946255 for technical quotation.`,
         },
-        { property: "og:title", content: `${name} — AACS` },
+        {
+          name: "keywords",
+          content: `${name}, ${name} price Bengaluru, ${product?.category} Karnataka, AA Cold Storages ${name}, industrial cold storage room, cold chain engineering`,
+        },
+        { property: "og:title", content: `${name} | AA Cold Storages Bengaluru` },
         {
           property: "og:description",
-          content: loaderData?.description ?? "AACS Cold Storage Solutions",
+          content: `${product?.description} Price: ${product?.priceFormatted}. Customized engineering by AA Cold Storages.`,
         },
-        { property: "og:type", content: "website" },
+        { property: "og:type", content: "product" },
+        { property: "og:url", content: canonicalUrl },
+        { property: "og:image", content: `${siteUrl}/MainLogo.png` },
         { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: `${name} | AA Cold Storages` },
+        { name: "twitter:description", content: `${name}: ${product?.priceFormatted}. Turnkey cold storage engineering in Bengaluru.` },
+        { name: "twitter:image", content: `${siteUrl}/MainLogo.png` },
       ],
+      links: [
+        { rel: "canonical", href: canonicalUrl },
+      ],
+      scripts: product
+        ? [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify(generateProductJsonLd(product)),
+            },
+            {
+              type: "application/ld+json",
+              children: JSON.stringify(
+                generateBreadcrumbs([
+                  { name: "Home", path: "/" },
+                  { name: "Products", path: "/products" },
+                  { name: product.name, path: `/products/${product.slug}` },
+                ])
+              ),
+            },
+          ]
+        : [],
     };
   },
   component: ProductDetailPage,
@@ -77,31 +113,123 @@ function ProductDetailPage() {
     phone: "",
     location: "Bengaluru",
   });
+  const [errors, setErrors] = useState<{ name?: string; phone?: string; location?: string }>({});
+  const [touched, setTouched] = useState<{ name?: boolean; phone?: boolean; location?: boolean }>({});
   const [quoteSubmitted, setQuoteSubmitted] = useState(false);
+  const [lastSubmittedData, setLastSubmittedData] = useState<typeof quoteForm | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [product.slug]);
 
-  const handleQuoteSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (!quoteForm.name || !quoteForm.phone) {
-      alert("Please enter your name and phone number.");
-      return;
+  const validateField = (field: "name" | "phone" | "location", value: string) => {
+    let error = "";
+    if (field === "name") {
+      if (!value.trim()) {
+        error = "Full name is required";
+      } else if (value.trim().length < 2) {
+        error = "Name must be at least 2 characters";
+      }
+    } else if (field === "phone") {
+      const cleanPhone = value.replace(/\D/g, "");
+      if (!cleanPhone) {
+        error = "10-digit mobile number is required";
+      } else if (cleanPhone.length < 10) {
+        error = `Please enter all 10 digits (${cleanPhone.length}/10 entered)`;
+      } else if (!/^[6-9]\d{9}$/.test(cleanPhone)) {
+        error = "Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9";
+      }
+    } else if (field === "location") {
+      if (!value.trim()) {
+        error = "Site location / city is required";
+      }
     }
-    setQuoteSubmitted(true);
+    return error;
   };
 
-  const handleWhatsAppQuote = () => {
-    const text =
-      `*New AACS Custom Quote Request*\n\n` +
-      `*Product:* ${product.name} (${product.priceFormatted})\n` +
-      `*Name:* ${quoteForm.name || "Not specified"}\n` +
-      `*Phone:* ${quoteForm.phone || "Not specified"}\n` +
-      `*Location:* ${quoteForm.location || "Bengaluru"}`;
+  const validateAll = (data = quoteForm) => {
+    const newErrors: { name?: string; phone?: string; location?: string } = {};
+    const nameErr = validateField("name", data.name);
+    if (nameErr) newErrors.name = nameErr;
 
-    const url = `https://wa.me/91${company.whatsapp}?text=${encodeURIComponent(text)}`;
+    const phoneErr = validateField("phone", data.phone);
+    if (phoneErr) newErrors.phone = phoneErr;
+
+    const locationErr = validateField("location", data.location);
+    if (locationErr) newErrors.location = locationErr;
+
+    return newErrors;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Restrict strictly to numbers and 10 digits maximum
+    const cleaned = e.target.value.replace(/\D/g, "").slice(0, 10);
+    setQuoteForm((prev) => ({ ...prev, phone: cleaned }));
+    if (touched.phone) {
+      const err = validateField("phone", cleaned);
+      setErrors((prev) => ({ ...prev, phone: err || undefined }));
+    }
+  };
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setQuoteForm((prev) => ({ ...prev, name: val }));
+    if (touched.name) {
+      const err = validateField("name", val);
+      setErrors((prev) => ({ ...prev, name: err || undefined }));
+    }
+  };
+
+  const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setQuoteForm((prev) => ({ ...prev, location: val }));
+    if (touched.location) {
+      const err = validateField("location", val);
+      setErrors((prev) => ({ ...prev, location: err || undefined }));
+    }
+  };
+
+  const handleBlur = (field: "name" | "phone" | "location") => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+    const err = validateField(field, quoteForm[field]);
+    setErrors((prev) => ({ ...prev, [field]: err || undefined }));
+  };
+
+  const buildWhatsAppUrl = (data = quoteForm) => {
+    const text =
+      `*❄️ NEW PRODUCT QUOTE REQUEST — AA COLD STORAGES ❄️*\n\n` +
+      `📦 *Product:* ${product.name} (${product.priceFormatted})\n` +
+      `🏷️ *Category:* ${product.category}\n` +
+      `👤 *Customer Name:* ${data.name.trim()}\n` +
+      `📱 *Mobile Number:* +91 ${data.phone.trim()}\n` +
+      `📍 *Site Location:* ${data.location.trim()}\n\n` +
+      `_Requested from: https://aacoldstorages.in/products/${product.slug}_`;
+
+    return `https://wa.me/91${company.whatsapp}?text=${encodeURIComponent(text)}`;
+  };
+
+  const handleQuoteSubmit = (e?: FormEvent) => {
+    if (e) e.preventDefault();
+    setTouched({ name: true, phone: true, location: true });
+
+    const currentErrors = validateAll(quoteForm);
+    setErrors(currentErrors);
+
+    if (Object.keys(currentErrors).length > 0) {
+      const firstKey = Object.keys(currentErrors)[0] as keyof typeof currentErrors;
+      toast.error(currentErrors[firstKey] || "Please fill all required fields correctly.");
+      const inputEl = document.getElementById(`prod-field-${firstKey}`);
+      inputEl?.focus();
+      return;
+    }
+
+    // Success! Open WhatsApp directly
+    const url = buildWhatsAppUrl(quoteForm);
     window.open(url, "_blank");
+
+    setLastSubmittedData({ ...quoteForm });
+    setQuoteSubmitted(true);
+    toast.success("Opening WhatsApp with your product quote request...");
   };
 
   return (
@@ -211,72 +339,184 @@ function ProductDetailPage() {
                     </span>
                   </div>
 
-                  {quoteSubmitted ? (
-                    <div className="my-3 rounded-xl border border-[#00B7FF]/30 bg-[#F5F9FC] p-4 text-center animate-fade-up">
-                      <CheckCircle2 className="mx-auto h-8 w-8 text-[#008938]" />
+                  {quoteSubmitted && lastSubmittedData ? (
+                    <div className="my-3 rounded-xl border border-[#008938]/30 bg-[#F5F9FC] p-4 text-center animate-fade-up">
+                      <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#008938]/10 text-[#008938]">
+                        <CheckCircle2 className="h-6 w-6" />
+                      </div>
                       <h4 className="mt-2 font-display text-sm font-bold text-[#002E7D]">
-                        Custom Quote Request Received!
+                        Quotation Request Prepared!
                       </h4>
                       <p className="mt-1 text-xs text-[#5C728A] leading-relaxed">
-                        Our refrigeration engineering team will contact you at <strong>{quoteForm.phone}</strong> with a detailed technical estimate for <strong>{product.name}</strong>.
+                        WhatsApp has opened with your pre-filled inquiry for <strong>{product.name}</strong>.
                       </p>
-                      <Button
-                        onClick={() => {
-                          setQuoteSubmitted(false);
-                          setQuoteForm({ name: "", phone: "", location: "Bengaluru" });
-                        }}
-                        variant="outline"
-                        size="sm"
-                        className="mt-3 rounded-lg border-[#D8E7F5] text-[0.7rem] font-semibold text-[#0050A7]"
-                      >
-                        Submit Another Enquiry
-                      </Button>
+
+                      <div className="mt-3 rounded-lg border border-[#D8E7F5] bg-white p-3 text-left text-[0.72rem] space-y-1.5">
+                        <div className="flex justify-between border-b border-[#F0F4F8] pb-1">
+                          <span className="text-[#5C728A]">Customer:</span>
+                          <strong className="text-[#002E7D]">{lastSubmittedData.name}</strong>
+                        </div>
+                        <div className="flex justify-between border-b border-[#F0F4F8] pb-1">
+                          <span className="text-[#5C728A]">Mobile:</span>
+                          <strong className="text-[#002E7D]">+91 {lastSubmittedData.phone}</strong>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-[#5C728A]">Location:</span>
+                          <strong className="text-[#002E7D]">{lastSubmittedData.location}</strong>
+                        </div>
+                      </div>
+
+                      <div className="mt-3 flex flex-col sm:flex-row gap-2">
+                        <Button
+                          type="button"
+                          onClick={() => {
+                            const url = buildWhatsAppUrl(lastSubmittedData);
+                            window.open(url, "_blank");
+                          }}
+                          size="sm"
+                          className="flex-1 rounded-lg bg-[#008938] hover:bg-[#00742f] text-white py-2 text-xs font-bold shadow-sm cursor-pointer"
+                        >
+                          <WhatsAppBrandIcon className="mr-1.5 h-3.5 w-3.5" /> Open WhatsApp Again
+                        </Button>
+                        <Button
+                          onClick={() => {
+                            setQuoteSubmitted(false);
+                            setQuoteForm({ name: "", phone: "", location: "Bengaluru" });
+                            setTouched({});
+                            setErrors({});
+                          }}
+                          variant="outline"
+                          size="sm"
+                          className="rounded-lg border-[#D8E7F5] text-[0.7rem] font-semibold text-[#0050A7]"
+                        >
+                          <RotateCcw className="mr-1 h-3 w-3" /> Submit Another
+                        </Button>
+                      </div>
                     </div>
                   ) : (
-                    <form onSubmit={handleQuoteSubmit} className="mt-3.5 space-y-3">
+                    <form onSubmit={handleQuoteSubmit} noValidate className="mt-3.5 space-y-3">
                       <div className="grid gap-2.5 sm:grid-cols-2">
+                        {/* Name */}
                         <div>
-                          <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-[#1A2B3C]">
-                            Name <span className="text-red-500">*</span>
-                          </label>
+                          <div className="flex items-center justify-between">
+                            <label htmlFor="prod-field-name" className="block text-[0.68rem] font-bold uppercase tracking-wider text-[#1A2B3C]">
+                              Name <span className="text-red-500">*</span>
+                            </label>
+                            {touched.name && !errors.name && quoteForm.name.trim().length >= 2 && (
+                              <span className="text-[0.6rem] text-[#008938] font-semibold flex items-center gap-0.5">
+                                <CheckCircle2 className="h-2.5 w-2.5" /> Valid
+                              </span>
+                            )}
+                          </div>
                           <Input
+                            id="prod-field-name"
                             required
                             value={quoteForm.name}
-                            onChange={(e) => setQuoteForm({ ...quoteForm, name: e.target.value })}
+                            onChange={handleNameChange}
+                            onBlur={() => handleBlur("name")}
                             placeholder="Your full name"
-                            className="mt-1 h-10 rounded-xl border-[#D8E7F5] text-xs"
+                            className={`mt-1 h-10 rounded-xl text-xs transition-all ${
+                              touched.name && errors.name
+                                ? "border-red-400 bg-red-50/40 focus-visible:ring-red-400"
+                                : "border-[#D8E7F5]"
+                            }`}
                           />
+                          {touched.name && errors.name && (
+                            <p className="mt-1 text-[0.65rem] text-red-500 flex items-center gap-1">
+                              <AlertCircle className="h-3 w-3 shrink-0" />
+                              {errors.name}
+                            </p>
+                          )}
                         </div>
 
+                        {/* Phone */}
                         <div>
-                          <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-[#1A2B3C]">
-                            Phone <span className="text-red-500">*</span>
-                          </label>
-                          <Input
-                            required
-                            type="tel"
-                            value={quoteForm.phone}
-                            onChange={(e) => setQuoteForm({ ...quoteForm, phone: e.target.value })}
-                            placeholder="10-digit mobile number"
-                            className="mt-1 h-10 rounded-xl border-[#D8E7F5] text-xs"
-                          />
+                          <div className="flex items-center justify-between">
+                            <label htmlFor="prod-field-phone" className="block text-[0.68rem] font-bold uppercase tracking-wider text-[#1A2B3C]">
+                              Phone <span className="text-red-500">*</span>
+                            </label>
+                            <span
+                              className={`text-[0.6rem] font-bold px-1.5 py-0.2 rounded-full ${
+                                quoteForm.phone.length === 10
+                                  ? "bg-[#008938]/10 text-[#008938]"
+                                  : quoteForm.phone.length > 0
+                                  ? "bg-amber-100 text-amber-700"
+                                  : "bg-slate-100 text-[#5C728A]"
+                              }`}
+                            >
+                              {quoteForm.phone.length}/10 digits
+                            </span>
+                          </div>
+                          <div className="relative mt-1 flex rounded-xl border shadow-sm">
+                            <span className="inline-flex items-center px-2.5 rounded-l-xl border-r border-[#D8E7F5] bg-[#F5F9FC] text-[0.7rem] font-bold text-[#002E7D] select-none">
+                              +91
+                            </span>
+                            <Input
+                              id="prod-field-phone"
+                              required
+                              type="tel"
+                              inputMode="numeric"
+                              pattern="[0-9]*"
+                              maxLength={10}
+                              value={quoteForm.phone}
+                              onChange={handlePhoneChange}
+                              onBlur={() => handleBlur("phone")}
+                              placeholder="10-digit mobile"
+                              className={`h-10 rounded-l-none rounded-r-xl border-0 text-xs focus-visible:ring-0 ${
+                                touched.phone && errors.phone
+                                  ? "bg-red-50/40"
+                                  : ""
+                              }`}
+                            />
+                          </div>
+                          {touched.phone && errors.phone ? (
+                            <p className="mt-1 text-[0.65rem] text-red-500 flex items-center gap-1">
+                              <AlertCircle className="h-3 w-3 shrink-0" />
+                              {errors.phone}
+                            </p>
+                          ) : (
+                            <p className="mt-1 text-[0.62rem] text-[#5C728A]">
+                              10-digit number only
+                            </p>
+                          )}
                         </div>
                       </div>
 
                       <div className="grid gap-2.5 sm:grid-cols-2">
+                        {/* Location */}
                         <div>
-                          <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-[#1A2B3C]">
-                            Location <span className="text-red-500">*</span>
-                          </label>
+                          <div className="flex items-center justify-between">
+                            <label htmlFor="prod-field-location" className="block text-[0.68rem] font-bold uppercase tracking-wider text-[#1A2B3C]">
+                              Location <span className="text-red-500">*</span>
+                            </label>
+                            {touched.location && !errors.location && quoteForm.location.trim().length > 0 && (
+                              <span className="text-[0.6rem] text-[#008938] font-semibold flex items-center gap-0.5">
+                                <CheckCircle2 className="h-2.5 w-2.5" /> Valid
+                              </span>
+                            )}
+                          </div>
                           <Input
+                            id="prod-field-location"
                             required
                             value={quoteForm.location}
-                            onChange={(e) => setQuoteForm({ ...quoteForm, location: e.target.value })}
+                            onChange={handleLocationChange}
+                            onBlur={() => handleBlur("location")}
                             placeholder="City / Area (e.g. Bengaluru)"
-                            className="mt-1 h-10 rounded-xl border-[#D8E7F5] text-xs"
+                            className={`mt-1 h-10 rounded-xl text-xs transition-all ${
+                              touched.location && errors.location
+                                ? "border-red-400 bg-red-50/40 focus-visible:ring-red-400"
+                                : "border-[#D8E7F5]"
+                            }`}
                           />
+                          {touched.location && errors.location && (
+                            <p className="mt-1 text-[0.65rem] text-red-500 flex items-center gap-1">
+                              <AlertCircle className="h-3 w-3 shrink-0" />
+                              {errors.location}
+                            </p>
+                          )}
                         </div>
 
+                        {/* Product Name */}
                         <div>
                           <label className="block text-[0.68rem] font-bold uppercase tracking-wider text-[#1A2B3C]">
                             Product / Application
@@ -289,21 +529,14 @@ function ProductDetailPage() {
                         </div>
                       </div>
 
-                      <div className="flex flex-col sm:flex-row gap-2 pt-1">
+                      <div className="pt-1">
                         <Button
                           type="submit"
-                          className="flex-1 rounded-xl bg-gradient-to-r from-[#0050A7] to-[#0AA8F5] py-2.5 font-display text-xs font-bold text-white shadow-brand hover:opacity-95 active:scale-[0.99] transition-all cursor-pointer"
+                          className="w-full rounded-xl bg-gradient-to-r from-[#0050A7] via-[#006ec7] to-[#0AA8F5] py-2.5 font-display text-xs font-bold text-white shadow-brand hover:opacity-95 active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center gap-2"
                         >
-                          <Send className="mr-1.5 h-3.5 w-3.5" /> Request Technical Quote
-                        </Button>
-
-                        <Button
-                          type="button"
-                          variant="outline"
-                          onClick={handleWhatsAppQuote}
-                          className="rounded-xl border border-[#D8E7F5] bg-[#F5F9FC] px-4 py-2.5 font-display text-xs font-bold text-[#008938] hover:bg-white active:scale-[0.99] transition-all cursor-pointer"
-                        >
-                          <WhatsAppBrandIcon className="mr-1.5 h-3.5 w-3.5" /> WhatsApp Quote
+                          <WhatsAppBrandIcon className="h-4 w-4" />
+                          <span>Submit &amp; Open on WhatsApp</span>
+                          <ExternalLink className="h-3.5 w-3.5 opacity-80" />
                         </Button>
                       </div>
                     </form>

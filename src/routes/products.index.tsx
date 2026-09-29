@@ -6,20 +6,27 @@ import { ProductCard, SectionHeading, CtaBand } from "@/components/sections";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { productCategories, products } from "@/lib/site-data";
 
+import { generateBreadcrumbs, siteUrl } from "@/lib/seo-schemas";
+
 export const Route = createFileRoute("/products/")({
   head: () => ({
     meta: [
       {
-        title: "Cold Storage Products Catalogue — AACS AA Cold Storages",
+        title: "Cold Storage Products Catalogue & Prices — AA Cold Storages Bengaluru",
       },
       {
         name: "description",
         content:
-          "Browse AACS commercial and industrial cold rooms, walk-in chillers, freezer rooms, banana ripening chambers, blast freezers and PUF insulated panels.",
+          "Explore AA Cold Storages product catalogue: 2 Ton–100T cold storage rooms, walk-in chillers, walk-in freezers, banana ripening chambers, blast freezers, PUF insulated panels (₹250/sq.ft) and cleanroom panels with pricing in Bengaluru.",
+      },
+      {
+        name: "keywords",
+        content:
+          "cold storage products Bengaluru, cold room price list, walk-in chiller, blast freezer, ripening chamber price, PUF panels Bengaluru, AA Cold Storages catalogue",
       },
       {
         property: "og:title",
-        content: "AACS Cold Storage Products Catalogue",
+        content: "Cold Storage Products Catalogue & Prices — AA Cold Storages",
       },
       {
         property: "og:description",
@@ -27,7 +34,26 @@ export const Route = createFileRoute("/products/")({
           "High-efficiency industrial refrigeration equipment, cold rooms, and insulated panels in Bengaluru.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${siteUrl}/products` },
+      { property: "og:image", content: `${siteUrl}/MainLogo.png` },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Cold Storage Products Catalogue — AA Cold Storages" },
+      { name: "twitter:description", content: "Commercial cold rooms, blast freezers, and PUF panel pricing in Bengaluru." },
+      { name: "twitter:image", content: `${siteUrl}/MainLogo.png` },
+    ],
+    links: [
+      { rel: "canonical", href: `${siteUrl}/products` },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          generateBreadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "Products Catalogue", path: "/products" },
+          ])
+        ),
+      },
     ],
   }),
   component: ProductsPage,

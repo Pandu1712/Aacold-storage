@@ -1,4 +1,8 @@
+# Robots.txt for AA Cold Storages (https://aacoldstorages.in)
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Bingbot
@@ -10,5 +14,21 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
 User-agent: *
 Allow: /
+
+# Canonical Sitemap and Host
+Sitemap: https://aacoldstorages.in/sitemap.xml
+Host: https://aacoldstorages.in

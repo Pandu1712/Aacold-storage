@@ -13,20 +13,27 @@ import { CtaBand, SectionHeading } from "@/components/sections";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { solutionSectors, company } from "@/lib/site-data";
 
+import { generateBreadcrumbs, siteUrl } from "@/lib/seo-schemas";
+
 export const Route = createFileRoute("/solutions")({
   head: () => ({
     meta: [
       {
-        title: "Cold Chain & Refrigeration Solutions — AACS AA Cold Storages",
+        title: "Cold Chain & Industry Storage Solutions — AA Cold Storages Bengaluru",
       },
       {
         name: "description",
         content:
-          "Explore specialized cold storage solutions for Food & Agriculture, Frozen Foods, Pharmaceuticals, and Commercial Warehouses from AACS.",
+          "Specialized cold storage solutions by AA Cold Storages: Agriculture & Produce, Frozen Foods & Meat, Pharmaceuticals & Vaccines, and Commercial Logistics Warehouses in Bengaluru, Karnataka.",
+      },
+      {
+        name: "keywords",
+        content:
+          "cold chain solutions Bengaluru, pharma cold storage Karnataka, agriculture cold rooms, frozen meat cold storage, vaccine refrigeration, commercial cold warehouse",
       },
       {
         property: "og:title",
-        content: "Industry Cold Chain Solutions — AACS",
+        content: "Industry Cold Chain Solutions — AA Cold Storages Bengaluru",
       },
       {
         property: "og:description",
@@ -34,7 +41,26 @@ export const Route = createFileRoute("/solutions")({
           "Turnkey temperature-controlled engineering for agriculture, seafood, meat, vaccines, and central distribution centers.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${siteUrl}/solutions` },
+      { property: "og:image", content: `${siteUrl}/MainLogo.png` },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Industry Cold Chain Solutions — AA Cold Storages" },
+      { name: "twitter:description", content: "Turnkey cold chain engineering for agriculture, dairy, pharma, and food processing." },
+      { name: "twitter:image", content: `${siteUrl}/MainLogo.png` },
+    ],
+    links: [
+      { rel: "canonical", href: `${siteUrl}/solutions` },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          generateBreadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "Industry Solutions", path: "/solutions" },
+          ])
+        ),
+      },
     ],
   }),
   component: SolutionsPage,

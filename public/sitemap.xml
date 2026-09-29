@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+        http://www.google.com/schemas/sitemap-image/1.1
+        http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+
+  <!-- Core Main Navigation Pages -->
+  <url>
+    <loc>https://aacoldstorages.in/</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>AA Cold Storages — Complete Cooling Solutions Bengaluru</image:title>
+      <image:caption>Customized Industrial and Commercial Cold Storage Solutions in Bengaluru</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/products</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Cold Storage Products Catalogue — AACS</image:title>
+      <image:caption>Cold Storage Rooms, Walk-in Chillers, Freezers, Ripening Chambers, Blast Freezers, PUF Panels</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/solutions</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Cold Chain Industry Solutions — AACS Bengaluru</image:title>
+      <image:caption>Cold storage solutions for agriculture, dairy, pharmaceuticals, seafood, and food processing</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/services</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Refrigeration, PUF Panel Installation &amp; AMC Services — AACS</image:title>
+      <image:caption>PUF Panel Installation, Cold Room Uninstallation, and HVAC Maintenance Services in Bengaluru</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/about</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>About AA Cold Storages (AACS)</image:title>
+      <image:caption>Turnkey refrigeration engineering company in Bengaluru, Karnataka</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/contact</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Contact AA Cold Storages — Request Technical Quotation</image:title>
+      <image:caption>Contact AACS engineers for cold storage price estimates and WhatsApp consultation</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 14 Individual Product Pages for Deep Search Indexing -->
+  <url>
+    <loc>https://aacoldstorages.in/products/2-ton-cold-storage-room</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Cold Storage Room — 2 Ton | AACS</image:title>
+      <image:caption>2 Ton modular cold room for fruits, vegetables, dairy, pharma, and commercial kitchens</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/products/cloud-kitchen-cold-room</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Cloud Kitchen Cold Room | AACS</image:title>
+      <image:caption>Temperature controlled cold storage for cloud kitchens, food prep, and QSR hubs</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/products/flower-cold-storage-room</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Flower Cold Storage Room | AACS</image:title>
+      <image:caption>High humidity floral cold storage room preserving fresh cut flowers</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/products/walk-in-chiller</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Walk-In Chiller (+2°C) | AACS</image:title>
+      <image:caption>Commercial 5 MT walk-in chiller room for food, pharma, and beverages</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/products/walk-in-freezer</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Walk-In Freezer (-18°C to -20°C) | AACS</image:title>
+      <image:caption>Sub-zero walk-in deep freezer room with heavy PUF panels and heated door frame</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/products/banana-ripening-chamber</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Banana Ripening Chamber | AACS</image:title>
+      <image:caption>Controlled ethylene &amp; temperature banana ripening chamber for produce traders</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/products/ripening-chamber</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Fruit Ripening Chamber (Mango, Banana, Papaya) | AACS</image:title>
+      <image:caption>Automatic fruit ripening chamber with PLC atmospheric controls</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/products/mushroom-growing-chamber</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Mushroom Growing Chamber (+2°C to +20°C) | AACS</image:title>
+      <image:caption>Climate-controlled chamber for button and specialty mushroom cultivation</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/products/blast-freezer-room</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Blast Freezer Room (-30°C to -35°C) | AACS</image:title>
+      <image:caption>Industrial rapid blast freezing room for seafood, poultry, meat, and frozen dough</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/products/meat-cold-storage</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Meat Cold Storage Room (-18°C to -20°C) | AACS</image:title>
+      <image:caption>Hygienic deep freeze cold room for butcheries, slaughterhouses, and poultry processors</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/products/ice-cream-freezer-room</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Ice Cream Freezer Room (-18°C to -20°C) | AACS</image:title>
+      <image:caption>Sub-zero thermal holding room for ice cream manufacturers and dessert cold chain</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/products/cold-storage-plant</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Turnkey Cold Storage Plant (5 Ton – 100+ Ton) | AACS</image:title>
+      <image:caption>Commercial multi-commodity cold storage warehouse plant with digital panel controls</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/products/puf-insulated-panels</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>PUF Insulated Panels (₹250/sq.ft) | AACS</image:title>
+      <image:caption>High density polyurethane foam sandwich panels with cam-lock tongue and groove joints</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aacoldstorages.in/products/clean-room-panels</loc>
+    <lastmod>2026-09-29T13:30:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://aacoldstorages.in/MainLogo.png</image:loc>
+      <image:title>Clean Room Modular Panels (ISO Class 5 - 8) | AACS</image:title>
+      <image:caption>Flush antibacterial cleanroom insulated panels for pharmaceuticals and biotechnology</image:caption>
+    </image:image>
+  </url>
+</urlset>

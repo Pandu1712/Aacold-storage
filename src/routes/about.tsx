@@ -23,28 +23,54 @@ import {
   company,
 } from "@/lib/site-data";
 
+import { generateBreadcrumbs, siteUrl } from "@/lib/seo-schemas";
+
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       {
-        title: "About Us — AACS AA Cold Storages Bengaluru",
+        title: "About Us — AA Cold Storages Bengaluru (AACS Cooling Solutions)",
       },
       {
         name: "description",
         content:
-          "Learn about AACS — AA Cold Storages, our company story, vision, mission, and industrial refrigeration capabilities.",
+          "Learn about AA Cold Storages (AACS): Bengaluru's premier refrigeration company providing commercial cold rooms, ripening chambers, blast freezers, PUF insulated panels and turnkey cooling plant engineering.",
+      },
+      {
+        name: "keywords",
+        content:
+          "about AA Cold Storages, AACS company profile, cold storage engineers Bengaluru, refrigeration contractor Karnataka, cooling solutions company profile",
       },
       {
         property: "og:title",
-        content: "About AACS — Complete Cooling Solutions",
+        content: "About AA Cold Storages — Complete Cooling Solutions Bengaluru",
       },
       {
         property: "og:description",
         content:
-          "Turnkey cold rooms, ripening chambers, blast freezers, PUF panels and AMC refrigeration services.",
+          "Turnkey cold rooms, ripening chambers, blast freezers, PUF panels and AMC refrigeration services in Bengaluru.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${siteUrl}/about` },
+      { property: "og:image", content: `${siteUrl}/MainLogo.png` },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "About AA Cold Storages Bengaluru" },
+      { name: "twitter:description", content: "Turnkey cold rooms, blast freezers, PUF panels and AMC support." },
+      { name: "twitter:image", content: `${siteUrl}/MainLogo.png` },
+    ],
+    links: [
+      { rel: "canonical", href: `${siteUrl}/about` },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          generateBreadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "About Us", path: "/about" },
+          ])
+        ),
+      },
     ],
   }),
   component: AboutPage,
